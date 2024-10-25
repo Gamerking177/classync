@@ -2,15 +2,20 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../assets/logo/logo.png'
 
 const Sidebar = () => (
     <div className="bg-white h-screen w-64 p-4 shadow-md">
         <div className="flex items-center mb-8">
-            <div className="bg-blue-500 p-2 rounded-full">
-                <i className="fas fa-robot text-white text-2xl"></i>
-            </div>
-            <span className="ml-2 text-xl font-bold">Logoipsum</span>
+            <img
+                src={Logo}
+                alt="Logo"
+                className="rounded-full w-12 h-12 ml-2"
+            />
+            <h3 className="ml-3 text-2xl font-semibold text-gray-800">ClassSync</h3>
         </div>
+
+
         <nav>
             <ul>
                 <li className="mb-4">
@@ -31,35 +36,35 @@ const Sidebar = () => (
                         Attendance
                     </Link>
                 </li>
-                 
 
-                    
-                 <li className="mb-4">
+
+
+                <li className="mb-4">
                     <Link to="/notices" className="flex items-center text-gray-600">
                         <i className="fas fa-bullhorn mr-2"></i>
                         Notices
                     </Link>
                 </li>
-                                <li className="mb-4">
+                <li className="mb-4">
                     <Link to="/exam" className="flex items-center text-gray-600">
                         <i className="fas fa-pencil-alt mr-2"></i>
                         Exam
                     </Link>
-                    </li>
+                </li>
 
-                 <li className="mb-4">
+                <li className="mb-4">
                     <Link to="/attendance" className="flex items-center text-gray-600">
                         <i className="fas fa-hand-paper mr-2"></i>
                         Attendance
                     </Link>
                 </li>
-                            
-            <li className="mb-4">
+
+                <li className="mb-4">
                     <Link to="/summary" className="flex items-center text-gray-600">
                         <i className="fas fa-chart-line mr-2"></i>
                         Summary
                     </Link>
-             </li>
+                </li>
 
             </ul>
         </nav>
