@@ -1,14 +1,11 @@
-// StudentDashboard.js
+import ShowCauseNotice from './ShowCauseNotice';
 import React from 'react';
  
 const StudentDashboard = () => {
-    return (
+    return (    
         <div className="p-4">
-            <div className="text-xl text-blue-600 mb-2">Dashboard » Student</div>
-            <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                <span className="block sm:inline">Show Cause Notice</span>
-                <p>If you are absent for consecutive 3 days then you must reply. Go to the Show Cause menu and reply. Ignore Msg if your attendance was updated.</p>
-            </div>
+            <ShowCauseNotice />
+           
             <div className="flex">
                 <div className="w-1/4 p-2">
                     <div className="border p-2">
