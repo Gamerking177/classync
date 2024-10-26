@@ -12,6 +12,7 @@ import AttendanceManagement from './pages/AttendanceManagement'
 import ClassSchedule from './components/ClassSchedule';
  import FeesManagement from './pages/FeesManagement';
 import CourseRegistration from './pages/CourseRegistration';
+import UserProfile from './pages/UserProfile';
    const App = () => (
      <Router>
         <div className="flex">
@@ -30,6 +31,7 @@ import CourseRegistration from './pages/CourseRegistration';
                     <Route path="/ExamAssignmentSchedule" element={<ExamAssignmentSchedule />} />
                     <Route path="/fees" element={<FeesManagement />} />
                     <Route path="/register-courses" element={<CourseRegistration />} />
+                    <Route path="/user-profile" element={<UserProfile />} />
                  </Routes>
              </div>
         </div>
