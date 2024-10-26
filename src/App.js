@@ -13,6 +13,7 @@ import ClassSchedule from './components/ClassSchedule';
  import FeesManagement from './pages/FeesManagement';
 import CourseRegistration from './pages/CourseRegistration';
 import UserProfile from './pages/UserProfile';
+import ReplyPage from './Replypage';
    const App = () => (
      <Router>
         <div className="flex">
@@ -32,6 +33,7 @@ import UserProfile from './pages/UserProfile';
                     <Route path="/fees" element={<FeesManagement />} />
                     <Route path="/register-courses" element={<CourseRegistration />} />
                     <Route path="/user-profile" element={<UserProfile />} />
+                    <Route path="/reply" element={<ReplyPage />} />
                  </Routes>
              </div>
         </div>
