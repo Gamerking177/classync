@@ -25,15 +25,15 @@ const Sidebar = () => (
                     </Link>
                 </li>
                 <li className="mb-4">
-                    <Link to="/students" className="flex items-center text-gray-600">
+                    <Link to="/attendance" className="flex items-center text-gray-600">
                         <i className="fas fa-user-graduate mr-2"></i>
-                        Students
+                        Attendance
                     </Link>
                 </li>
                 <li className="mb-4">
-                    <Link to="/attendance" className="flex items-center text-gray-600">
+                    <Link to="/marks&academic" className="flex items-center text-gray-600">
                         <i className="fas fa-hand-paper mr-2"></i>
-                        Attendance
+                        Marks & Academic
                     </Link>
                 </li>
 
