@@ -4,20 +4,44 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-function AttendanceManagement() {
-  // Dummy data for the pie chart
-  const attendanceData = {
-    labels: ['Present', 'Absent', 'Leave'],
-    datasets: [
-      {
-        label: 'Attendance',
-        data: [75, 15, 10], // Adjust according to actual data
-        backgroundColor: ['#4CAF50', '#F44336', '#FFC107'],
-        hoverBackgroundColor: ['#45A049', '#E53935', '#FFB300'],
-      },
-    ],
-  };
+// Function to generate dummy attendance data for the past 3 months
+function generateAttendanceData() {
+  const attendanceRecords = [];
+  const currentDate = new Date();
+  currentDate.setDate(1); // Start from the beginning of the current month
 
+  for (let i = 0; i < 90; i++) {
+    const status = Math.random() < 0.75 ? 'Present' : (Math.random() < 0.5 ? 'Absent' : 'Leave');
+    attendanceRecords.push({
+      date: currentDate.toISOString().split('T')[0],
+      status: status,
+    });
+    currentDate.setDate(currentDate.getDate() - 1); // Move to the previous day
+  }
+  return attendanceRecords;
+}
+
+const attendanceRecords = generateAttendanceData();
+
+// Calculate attendance summary for the pie chart
+const presentCount = attendanceRecords.filter(record => record.status === 'Present').length;
+const absentCount = attendanceRecords.filter(record => record.status === 'Absent').length;
+const leaveCount = attendanceRecords.filter(record => record.status === 'Leave').length;
+
+// Pie chart data
+const attendanceData = {
+  labels: ['Present', 'Absent', 'Leave'],
+  datasets: [
+    {
+      label: 'Attendance',
+      data: [presentCount, absentCount, leaveCount],
+      backgroundColor: ['#4CAF50', '#F44336', '#FFC107'],
+      hoverBackgroundColor: ['#45A049', '#E53935', '#FFB300'],
+    },
+  ],
+};
+
+function AttendanceManagement() {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       {/* Header */}
@@ -38,7 +62,7 @@ function AttendanceManagement() {
 
       {/* Attendance Table */}
       <section className="bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">Attendance Record</h2>
+        <h2 className="text-xl font-semibold mb-4">Attendance Record (Last 3 Months)</h2>
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-blue-200">
@@ -47,15 +71,14 @@ function AttendanceManagement() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="p-3 border">2024-10-01</td>
-              <td className="p-3 border text-green-600">Present</td>
-            </tr>
-            <tr>
-              <td className="p-3 border">2024-10-02</td>
-              <td className="p-3 border text-red-600">Absent</td>
-            </tr>
-            {/* Add more records as needed */}
+            {attendanceRecords.map((record, index) => (
+              <tr key={index}>
+                <td className="p-3 border">{record.date}</td>
+                <td className={`p-3 border ${record.status === 'Present' ? 'text-green-600' : record.status === 'Absent' ? 'text-red-600' : 'text-yellow-600'}`}>
+                  {record.status}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </section>
@@ -67,10 +90,10 @@ function AttendanceManagement() {
           <Pie data={attendanceData} />
         </div>
         <div className="text-lg mt-6 text-center">
-          <p><span className="font-medium">Total Days:</span> 100</p>
-          <p><span className="font-medium">Present:</span> 75</p>
-          <p><span className="font-medium">Absent:</span> 15</p>
-          <p><span className="font-medium">On Leave:</span> 10</p>
+          <p><span className="font-medium">Total Days:</span> 90</p>
+          <p><span className="font-medium">Present:</span> {presentCount}</p>
+          <p><span className="font-medium">Absent:</span> {absentCount}</p>
+          <p><span className="font-medium">On Leave:</span> {leaveCount}</p>
         </div>
       </section>
     </div>

@@ -8,10 +8,12 @@ import ExamPage from './pages/ExamPage';
 import SummaryPage from './components/SummaryPage';
 import AcademicPerformance from './components/marks&academic'
 import AttendanceManagement from './pages/AttendanceManagement'
-import ExamAssignmentSchedule from './components/ExamAssignmentSchedule';
+ import ExamAssignmentSchedule from './components/ExamAssignmentSchedule';
 import ClassSchedule from './components/ClassSchedule';
-     const App = () => (
-    <Router>
+ import FeesManagement from './pages/FeesManagement';
+import CourseRegistration from './pages/CourseRegistration';
+   const App = () => (
+     <Router>
         <div className="flex">
             <Sidebar />
             <div className="flex-grow p-4">  
@@ -23,11 +25,12 @@ import ClassSchedule from './components/ClassSchedule';
                     <Route path="/summary" element={<SummaryPage />} />
                     <Route path="/marks&academic" element={< AcademicPerformance/>} />
                     <Route path="/attendance" element={< AttendanceManagement/>} />
-                        <Route path="/Schedules" element={< ExamAssignmentSchedule/>} />
+                    <Route path="/Schedules" element={< ExamAssignmentSchedule/>} />
                     <Route path="/ClassSchedule" element={<ClassSchedule />} />
                     <Route path="/ExamAssignmentSchedule" element={<ExamAssignmentSchedule />} />
-
-                </Routes>
+                    <Route path="/fees" element={<FeesManagement />} />
+                    <Route path="/register-courses" element={<CourseRegistration />} />
+                 </Routes>
              </div>
         </div>
     </Router>
