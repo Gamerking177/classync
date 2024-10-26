@@ -27,7 +27,7 @@ const Sidebar = () => (
                 <li className="mb-4">
                     <Link to="/attendance" className="flex items-center text-gray-600">
                         <i className="fas fa-user-graduate mr-2"></i>
-                        Attendance
+                        Attendance Management
                     </Link>
                 </li>
                 <li className="mb-4">
