@@ -7,6 +7,7 @@ import NoticePage from './pages/NoticePage';
 import ExamPage from './pages/ExamPage';
 import AttendancePage from './components/AttendancePage';
 import SummaryPage from './components/SummaryPage';
+import AcademicPerformance from './components/marks&academic'
    const App = () => (
     <Router>
         <div className="flex">
@@ -19,6 +20,7 @@ import SummaryPage from './components/SummaryPage';
                     <Route path="/exam" element={<ExamPage />} />
                     <Route path="/attendance" element={<AttendancePage />} />
                     <Route path="/summary" element={<SummaryPage />} />
+                    <Route path="/marks&academic" element={< AcademicPerformance/>} />
 
                 </Routes>
             </div>
