@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/DashboardStats';
 import StudentDashboard from './components/StudentCard';
@@ -8,38 +8,137 @@ import ExamPage from './pages/ExamPage';
 import SummaryPage from './components/SummaryPage';
 import AcademicPerformance from './components/marks&academic';
 import AttendanceManagement from './pages/AttendanceManagement';
-import AcademicPerformance from './components/marks&academic'
-import AttendanceManagement from './pages/AttendanceManagement'
- import ExamAssignmentSchedule from './components/ExamAssignmentSchedule';
+import ExamAssignmentSchedule from './components/ExamAssignmentSchedule';
 import ClassSchedule from './components/ClassSchedule';
- import FeesManagement from './pages/FeesManagement';
+import FeesManagement from './pages/FeesManagement';
 import CourseRegistration from './pages/CourseRegistration';
 import UserProfile from './pages/UserProfile';
 import ReplyPage from './Replypage';
-   const App = () => (
-     <Router>
-        <div className="flex">
-            <Sidebar />
-            <div className="flex-grow p-4">  
-                <Routes>
-                    <Route path="/" element={<Dashboard />}/>
-                    <Route path="/students" element={<StudentDashboard />} />
-                    <Route path="/notices" element={<NoticePage />} />
-                    <Route path="/exam" element={<ExamPage />} />
-                    <Route path="/summary" element={<SummaryPage />} />
-                    <Route path="/marks&academic" element={< AcademicPerformance/>} />
-                    <Route path="/attendance" element={< AttendanceManagement/>} />
-                    <Route path="/Schedules" element={< ExamAssignmentSchedule/>} />
-                    <Route path="/ClassSchedule" element={<ClassSchedule />} />
-                    <Route path="/ExamAssignmentSchedule" element={<ExamAssignmentSchedule />} />
-                    <Route path="/fees" element={<FeesManagement />} />
-                    <Route path="/register-courses" element={<CourseRegistration />} />
-                    <Route path="/user-profile" element={<UserProfile />} />
-                    <Route path="/reply" element={<ReplyPage />} />
-                 </Routes>
-             </div>
+import Login from '../src/auth/login/login';
+import ProtectedRoute from '../src/route/protextiveroute';
+import { useAuth } from './context/authContext/authContext'; // Import useAuth to check auth state
+
+const App = () => {
+  const { userLoggedIn } = useAuth(); // Get auth state from context
+
+  return (
+    <Router>
+      <div className="flex">
+        {userLoggedIn && <Sidebar />} {/* Only show Sidebar if authenticated */}
+        <div className="flex-grow p-4">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            
+            {/* Protected Routes */}
+            <Route 
+              path="/" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <Dashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/students" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <StudentDashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/notices" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <NoticePage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/exam" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <ExamPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/summary" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <SummaryPage />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/marks&academic" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <AcademicPerformance />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/attendance" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <AttendanceManagement />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/schedules" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <ExamAssignmentSchedule />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/class-schedule" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <ClassSchedule />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/fees" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <FeesManagement />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/register-courses" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <CourseRegistration />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/user-profile" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <UserProfile />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/reply" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <ReplyPage />
+                </ProtectedRoute>
+              } 
+            />
+          </Routes>
         </div>
+      </div>
     </Router>
-);
+  );
+};
 
 export default App;
