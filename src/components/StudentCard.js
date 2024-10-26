@@ -1,4 +1,4 @@
-import ShowCauseNotice from './ShowCauseNotice';
+ import ShowCauseNotice from './ShowCauseNotice';
 import React from 'react';
  
 const StudentDashboard = () => {
@@ -40,3 +40,4 @@ const StudentDashboard = () => {
 };
 
 export default StudentDashboard;
+ 
