@@ -5,11 +5,12 @@ import Dashboard from './components/DashboardStats';
 import StudentDashboard from './components/StudentCard';  
 import NoticePage from './pages/NoticePage';
 import ExamPage from './pages/ExamPage';
-
 import SummaryPage from './components/SummaryPage';
 import AcademicPerformance from './components/marks&academic'
 import AttendanceManagement from './pages/AttendanceManagement'
-   const App = () => (
+import ExamAssignmentSchedule from './components/ExamAssignmentSchedule';
+import ClassSchedule from './components/ClassSchedule';
+     const App = () => (
     <Router>
         <div className="flex">
             <Sidebar />
@@ -19,12 +20,15 @@ import AttendanceManagement from './pages/AttendanceManagement'
                     <Route path="/students" element={<StudentDashboard />} />
                     <Route path="/notices" element={<NoticePage />} />
                     <Route path="/exam" element={<ExamPage />} />
-                    
                     <Route path="/summary" element={<SummaryPage />} />
                     <Route path="/marks&academic" element={< AcademicPerformance/>} />
                     <Route path="/attendance" element={< AttendanceManagement/>} />
+                        <Route path="/Schedules" element={< ExamAssignmentSchedule/>} />
+                    <Route path="/ClassSchedule" element={<ClassSchedule />} />
+                    <Route path="/ExamAssignmentSchedule" element={<ExamAssignmentSchedule />} />
+
                 </Routes>
-            </div>
+             </div>
         </div>
     </Router>
 );

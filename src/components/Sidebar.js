@@ -45,17 +45,12 @@ const Sidebar = () => (
                         Notices
                     </Link>
                 </li>
-                <li className="mb-4">
-                    <Link to="/exam" className="flex items-center text-gray-600">
-                        <i className="fas fa-pencil-alt mr-2"></i>
-                        Exam
-                    </Link>
-                </li>
+                 
 
                 <li className="mb-4">
-                    <Link to="/attendance" className="flex items-center text-gray-600">
+                    <Link to="/Schedules" className="flex items-center text-gray-600">
                         <i className="fas fa-hand-paper mr-2"></i>
-                        Attendance
+                        Schedules
                     </Link>
                 </li>
 
