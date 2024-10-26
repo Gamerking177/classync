@@ -2,12 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/DashboardStats';
-import StudentDashboard from './components/StudentCard';
-import NoticePage from './pages/NoticePage';
-import ExamPage from './pages/ExamPage';
-import SummaryPage from './components/SummaryPage';
+ 
+  
 import AcademicPerformance from './components/marks&academic';
-import AttendanceManagement from './pages/AttendanceManagement';
+import AttendanceManagement from './pages/AttendanceManagement'
 import ExamAssignmentSchedule from './components/ExamAssignmentSchedule';
 import ClassSchedule from './components/ClassSchedule';
 import FeesManagement from './pages/FeesManagement';
@@ -35,38 +33,6 @@ const App = () => {
               element={
                 <ProtectedRoute isAuthenticated={userLoggedIn}>
                   <Dashboard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/students" 
-              element={
-                <ProtectedRoute isAuthenticated={userLoggedIn}>
-                  <StudentDashboard />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/notices" 
-              element={
-                <ProtectedRoute isAuthenticated={userLoggedIn}>
-                  <NoticePage />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/exam" 
-              element={
-                <ProtectedRoute isAuthenticated={userLoggedIn}>
-                  <ExamPage />
-                </ProtectedRoute>
-              } 
-            />
-            <Route 
-              path="/summary" 
-              element={
-                <ProtectedRoute isAuthenticated={userLoggedIn}>
-                  <SummaryPage />
                 </ProtectedRoute>
               } 
             />
