@@ -15,7 +15,7 @@ import AttendanceManagement from './pages/AttendanceManagement'
             <Sidebar />
             <div className="flex-grow p-4">  
                 <Routes>
-                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/" element={<Dashboard />}/>
                     <Route path="/students" element={<StudentDashboard />} />
                     <Route path="/notices" element={<NoticePage />} />
                     <Route path="/exam" element={<ExamPage />} />
@@ -23,7 +23,6 @@ import AttendanceManagement from './pages/AttendanceManagement'
                     <Route path="/summary" element={<SummaryPage />} />
                     <Route path="/marks&academic" element={< AcademicPerformance/>} />
                     <Route path="/attendance" element={< AttendanceManagement/>} />
-
                 </Routes>
             </div>
         </div>
