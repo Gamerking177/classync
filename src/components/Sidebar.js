@@ -61,9 +61,12 @@ const Sidebar = () => (
                         Fees Management
                     </NavLink>
                 </li>
+
+
+
                 <li className="mb-4">
                     <NavLink 
-                        to="/schedules" 
+                        to="/Navbar" 
                         className={({ isActive }) => 
                             `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
                         }
@@ -72,6 +75,9 @@ const Sidebar = () => (
                         Schedules
                     </NavLink>
                 </li>
+
+
+
                 <li className="mb-4">
                     <NavLink 
                         to="/register-courses" 
