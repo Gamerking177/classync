@@ -54,10 +54,17 @@ const Sidebar = () => (
                     </Link>
                 </li>
 
+
                 <li className="mb-4">
                     <Link to="register-courses" className="flex items-center text-gray-600">
                         <i className="fas fa-chart-line mr-2"></i>
                         Course Registration
+                    </Link>
+                </li>
+                <li className="mb-4">
+                    <Link to="/user-profile" className="flex items-center text-gray-600">
+                        <i className="fas fa-hand-paper mr-2"></i>
+                        User Profile
                     </Link>
                 </li>
 
