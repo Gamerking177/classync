@@ -3,17 +3,26 @@ import React, { useState } from 'react';
 
 const ReplyPage = () => {
   const [reply, setReply] = useState('');
+  const [file, setFile] = useState(null);
 
   const handleInputChange = (event) => {
     setReply(event.target.value);
   };
 
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Here you would handle the form submission, e.g., send the reply to a server
+    // Handle the form submission here, e.g., send reply and file to a server
     console.log('Reply submitted:', reply);
+    if (file) {
+      console.log('File uploaded:', file.name);
+    }
     alert('Reply submitted successfully!');
-    setReply(''); // Clear the input after submission
+    setReply(''); // Clear the reply input
+    setFile(null); // Clear the file input
   };
 
   return (
@@ -29,6 +38,11 @@ const ReplyPage = () => {
           placeholder="Write your reply here..."
           className="p-3 border border-gray-300 rounded-md w-full h-32"
           required
+        />
+        <input
+          type="file"
+          onChange={handleFileChange}
+          className="border border-gray-300 rounded-md p-2"
         />
         <button
           type="submit"
