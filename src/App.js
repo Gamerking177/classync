@@ -35,7 +35,7 @@ const App = () => {
                   <Dashboard />
                 </ProtectedRoute>
               } 
-            />
+            />+
             <Route 
               path="/marks&academic" 
               element={
