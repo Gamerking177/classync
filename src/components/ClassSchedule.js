@@ -1,5 +1,4 @@
-// components/ClassSchedule.js
-import React, { useState } from 'react';
+    import React, { useState } from 'react';
 
 function ClassSchedule() {
   const [view, setView] = useState('weekly');
