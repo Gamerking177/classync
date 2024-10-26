@@ -1,9 +1,10 @@
  import React from 'react';
+ import StudentDashboard from './StudentCard'
 
 const Dashboard = () => (
    <>
-   
-    <div className="flex-1 p-6 bg-gray-100">
+   <StudentDashboard/>
+    {/* <div className="flex-1 p-6 bg-gray-100">
         <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold">Dashboard</h1>
             <div className="flex items-center">
@@ -52,7 +53,7 @@ const Dashboard = () => (
                 <img src="https://placehold.co/200x200?text=Pie+Chart" alt="Pie chart showing monthly attendance data" />
             </div>
         </div>
-    </div>
+    </div> */}
     </>
 );
 
