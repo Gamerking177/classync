@@ -1,4 +1,4 @@
-// src/components/ShowCauseNotice.js
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 
 const ShowCauseNotice = () => {
@@ -17,8 +17,14 @@ const ShowCauseNotice = () => {
                 &times;
             </button>
             <span className="block sm:inline font-semibold">Show Cause Notice</span>
-            <p className="mt-1">If you are absent for three consecutive days, you must reply. Go to the Show Cause menu and reply. Ignore this message if your attendance was updated.</p>
-        </div>
+<p className="mt-1">
+  If you are absent for three consecutive days, you must{" "}
+  <Link to="/reply" className="text-blue-500 underline">reply</Link>.
+  Ignore this message if your attendance was updated.
+</p>
+
+
+        </div> 
     );
 };
 

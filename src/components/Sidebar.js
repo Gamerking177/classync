@@ -2,10 +2,12 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../assets/logo/logo.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTachometerAlt, faClipboardCheck, faGraduationCap, faWallet, faCalendarAlt, faBookOpen, faUser } from '@fortawesome/free-solid-svg-icons';
+import Logo from '../assets/logo/logo.png';
 
 const Sidebar = () => (
-    <div className="bg-white h-screen w-64 p-4 shadow-md">
+    <div className="bg-white h-screen w-64 p-4 shadow-md relative">
         <div className="flex items-center mb-8">
             <img
                 src={Logo}
@@ -15,59 +17,54 @@ const Sidebar = () => (
             <h3 className="ml-3 text-2xl font-semibold text-gray-800">ClassSync</h3>
         </div>
 
-
         <nav>
             <ul>
                 <li className="mb-4">
                     <Link to="/" className="flex items-center text-blue-500">
-                        <i className="fas fa-tachometer-alt mr-2"></i>
+                        <FontAwesomeIcon icon={faTachometerAlt} className="mr-2" />
                         Dashboard
                     </Link>
                 </li>
                 <li className="mb-4">
                     <Link to="/attendance" className="flex items-center text-gray-600">
-                        <i className="fas fa-user-graduate mr-2"></i>
+                        <FontAwesomeIcon icon={faClipboardCheck} className="mr-2" />
                         Attendance Management
                     </Link>
                 </li>
                 <li className="mb-4">
                     <Link to="/marks&academic" className="flex items-center text-gray-600">
-                        <i className="fas fa-hand-paper mr-2"></i>
+                        <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
                         Marks & Academic
                     </Link>
                 </li>
-
-
-
                 <li className="mb-4">
-                    <Link to="/notices" className="flex items-center text-gray-600">
-                        <i className="fas fa-bullhorn mr-2"></i>
-                        Notices
+                    <Link to="/fees" className="flex items-center text-gray-600">
+                        <FontAwesomeIcon icon={faWallet} className="mr-2" />
+                        Fees Management
                     </Link>
                 </li>
                 <li className="mb-4">
-                    <Link to="/exam" className="flex items-center text-gray-600">
-                        <i className="fas fa-pencil-alt mr-2"></i>
-                        Exam
+                    <Link to="/schedules" className="flex items-center text-gray-600">
+                        <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
+                        Schedules
                     </Link>
                 </li>
-
                 <li className="mb-4">
-                    <Link to="/attendance" className="flex items-center text-gray-600">
-                        <i className="fas fa-hand-paper mr-2"></i>
-                        Attendance
+                    <Link to="/register-courses" className="flex items-center text-gray-600">
+                        <FontAwesomeIcon icon={faBookOpen} className="mr-2" />
+                        Course Registration
                     </Link>
                 </li>
-
                 <li className="mb-4">
-                    <Link to="/summary" className="flex items-center text-gray-600">
-                        <i className="fas fa-chart-line mr-2"></i>
-                        Summary
+                    <Link to="/user-profile" className="flex items-center text-gray-600">
+                        <FontAwesomeIcon icon={faUser} className="mr-2" />
+                        User Profile
                     </Link>
                 </li>
-
             </ul>
         </nav>
+
+        {/* Profile Footer Section */}
         <div className="absolute bottom-4 left-4 flex items-center">
             <div className="bg-green-500 p-2 rounded-full">
                 <span className="text-white text-xl">G</span>
