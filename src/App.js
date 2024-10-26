@@ -9,6 +9,8 @@ import ExamPage from './pages/ExamPage';
 import SummaryPage from './components/SummaryPage';
 import AcademicPerformance from './components/marks&academic'
 import AttendanceManagement from './pages/AttendanceManagement'
+import FeesManagement from './pages/FeesManagement';
+import CourseRegistration from './pages/CourseRegistration';
    const App = () => (
     <Router>
         <div className="flex">
@@ -23,6 +25,9 @@ import AttendanceManagement from './pages/AttendanceManagement'
                     <Route path="/summary" element={<SummaryPage />} />
                     <Route path="/marks&academic" element={< AcademicPerformance/>} />
                     <Route path="/attendance" element={< AttendanceManagement/>} />
+
+                    <Route path="/fees" element={<FeesManagement />} />
+                    <Route path="/register-courses" element={<CourseRegistration />} />
                 </Routes>
             </div>
         </div>

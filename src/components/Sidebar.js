@@ -40,9 +40,9 @@ const Sidebar = () => (
 
 
                 <li className="mb-4">
-                    <Link to="/notices" className="flex items-center text-gray-600">
+                    <Link to="/fees" className="flex items-center text-gray-600">
                         <i className="fas fa-bullhorn mr-2"></i>
-                        Notices
+                        FeesManagement
                     </Link>
                 </li>
                 <li className="mb-4">
@@ -60,9 +60,9 @@ const Sidebar = () => (
                 </li>
 
                 <li className="mb-4">
-                    <Link to="/summary" className="flex items-center text-gray-600">
+                    <Link to="register-courses" className="flex items-center text-gray-600">
                         <i className="fas fa-chart-line mr-2"></i>
-                        Summary
+                        Course Registration
                     </Link>
                 </li>
 
