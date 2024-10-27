@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-  import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Doughnut } from 'react-chartjs-2';
+import 'chart.js/auto'; // Import necessary chart.js features
 
 // Create a MotionLink component that uses the Link component with motion
 const MotionLink = motion(Link);
@@ -15,12 +17,21 @@ const AttendanceManagement = () => {
     // Add more records as needed
   ];
 
-  const [dateFilter, setDateFilter] = useState(new Date()); // Initialize with today's date
+  // Filter records for the current month
+  const currentMonth = new Date().getMonth() + 1; // months are zero-indexed
+  const currentMonthRecords = attendanceRecords.filter(record => 
+    new Date(record.date).getMonth() + 1 === currentMonth
+  );
 
-  // Calculate attendance summary for the pie chart
-  const presentCount = attendanceRecords.filter(record => record.status === 'Present').length;
-  const absentCount = attendanceRecords.filter(record => record.status === 'Absent').length;
-  const leaveCount = attendanceRecords.filter(record => record.status === 'Leave').length;
+  const presentCount = currentMonthRecords.filter(record => record.status === 'Present').length;
+  const absentCount = currentMonthRecords.filter(record => record.status === 'Absent').length;
+  const leaveCount = currentMonthRecords.filter(record => record.status === 'Leave').length;
+
+  // Calculate total and percentages
+  const totalRecords = currentMonthRecords.length;
+  const presentPercentage = ((presentCount / totalRecords) * 100).toFixed(1);
+  const absentPercentage = ((absentCount / totalRecords) * 100).toFixed(1);
+  const leavePercentage = ((leaveCount / totalRecords) * 100).toFixed(1);
 
   // Pie chart data
   const attendanceData = {
@@ -62,9 +73,21 @@ const AttendanceManagement = () => {
         ))}
       </nav>
 
-       
+      {/* Attendance Summary Pie Chart and Percentage Summary */}
+      <div className="flex justify-center items-center mt-8 space-x-8">
+        {/* Pie Chart */}
+        <div className="w-1/2 md:w-1/3 lg:w-1/4">
+          <h2 className="text-xl font-semibold text-center mb-4">Current Month Attendance Summary</h2>
+          <Doughnut data={attendanceData} />
+        </div>
 
-       
+        {/* Percentage Summary */}
+        <div className="text-lg font-medium">
+          <p><span className="font-semibold text-green-600">Present:</span> {presentPercentage}%</p>
+          <p><span className="font-semibold text-red-600">Absent:</span> {absentPercentage}%</p>
+          <p><span className="font-semibold text-yellow-600">Leave:</span> {leavePercentage}%</p>
+        </div>
+      </div>
     </div>
   );
 };
