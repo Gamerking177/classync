@@ -1,78 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
 
 const AcademicCalendar = () => {
+  const [selectedSemester, setSelectedSemester] = useState("All");
+
   const calendarData = {
     semesters: [
       { name: "Semester 1", start: "2024-01-10", end: "2024-06-10" },
       { name: "Semester 2", start: "2024-07-10", end: "2024-12-10" },
     ],
     deadlines: [
-      { name: "Course Registration", date: "2024-01-15" },
-      { name: "Add/Drop Courses", date: "2024-01-25" },
-      { name: "Withdraw Deadline", date: "2024-02-20" },
+      { name: "Course Registration", date: "2024-01-15", semester: "Semester 1" },
+      { name: "Add/Drop Courses", date: "2024-01-25", semester: "Semester 1" },
+      { name: "Withdraw Deadline", date: "2024-02-20", semester: "Semester 1" },
+      { name: "Final Exams", date: "2024-12-05", semester: "Semester 2" },
     ],
     exams: [
-      { name: "Midterm Exams", date: "2024-03-10 - 2024-03-20" },
-      { name: "Final Exams", date: "2024-06-01 - 2024-06-10" },
+      { name: "Midterm Exams", date: "2024-03-10 - 2024-03-20", semester: "Semester 1" },
+      { name: "Final Exams", date: "2024-06-01 - 2024-06-10", semester: "Semester 1" },
     ],
     holidays: [
-      { name: "National Holiday", date: "2024-01-26" },
-      { name: "Independence Day", date: "2024-08-15" },
+      { name: "National Holiday", date: "2024-01-26", semester: "All" },
+      { name: "Independence Day", date: "2024-08-15", semester: "All" },
     ],
     events: [
-      { name: "Orientation", date: "2024-01-05" },
-      { name: "Annual Day", date: "2024-04-15" },
+      { name: "Orientation", date: "2024-01-05", semester: "Semester 1" },
+      { name: "Annual Day", date: "2024-04-15", semester: "Semester 1" },
     ],
     results: [
-      { name: "Midterm Results", date: "2024-03-25" },
-      { name: "Final Results", date: "2024-06-20" },
+      { name: "Midterm Results", date: "2024-03-25", semester: "Semester 1" },
+      { name: "Final Results", date: "2024-06-20", semester: "Semester 1" },
     ],
     internships: [
-      { name: "Internship Registration", date: "2024-05-01" },
-      { name: "On-Campus Placements", date: "2024-09-10" },
+      { name: "Internship Registration", date: "2024-05-01", semester: "Semester 1" },
+      { name: "On-Campus Placements", date: "2024-09-10", semester: "Semester 2" },
     ],
     facultyDevelopment: [
-      { name: "Faculty Training", date: "2024-06-15" },
+      { name: "Faculty Training", date: "2024-06-15", semester: "Semester 1" },
     ],
+  };
+
+  const filteredItems = (items) => {
+    return items.filter(
+      (item) => selectedSemester === "All" || item.semester === selectedSemester
+    );
   };
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold text-center mb-8">Academic Calendar</h1>
-      
+      <h1 className="text-4xl font-bold text-center mb-8">Academic Calendar</h1>
+
+      {/* Semester Filter */}
+      <div className="text-center mb-4">
+        <label className="mr-3 font-medium text-lg">Filter by Semester:</label>
+        <select
+          className="p-2 rounded border border-gray-300"
+          value={selectedSemester}
+          onChange={(e) => setSelectedSemester(e.target.value)}
+        >
+          <option value="All">All</option>
+          {calendarData.semesters.map((sem, idx) => (
+            <option key={idx} value={sem.name}>{sem.name}</option>
+          ))}
+        </select>
+      </div>
+
+      {/* Calendar Sections */}
       <div className="space-y-6">
-        {/* Semester Dates */}
         <Section title="Semester Dates" items={calendarData.semesters} />
 
-        {/* Important Deadlines */}
-        <Section title="Important Deadlines" items={calendarData.deadlines} />
+        <Section title="Important Deadlines" items={filteredItems(calendarData.deadlines)} />
 
-        {/* Exam Dates */}
-        <Section title="Exam Dates" items={calendarData.exams} />
+        <Section title="Exam Dates" items={filteredItems(calendarData.exams)} />
 
-        {/* Holidays and Observances */}
-        <Section title="Holidays and Observances" items={calendarData.holidays} />
-
-        {/* Events and Activities */}
-        <Section title="Events and Activities" items={calendarData.events} />
-
-        {/* Grading and Result Dates */}
-        <Section title="Grading and Result Dates" items={calendarData.results} />
-
-        {/* Internship and Placement Drives */}
-        <Section title="Internship and Placement Drives" items={calendarData.internships} />
-
-        {/* Faculty Development Days */}
-        <Section title="Faculty Development Days" items={calendarData.facultyDevelopment} />
-
-        {/* Miscellaneous Notes */}
-        <div className="p-4 bg-white shadow rounded-lg mt-6">
-          <h2 className="text-xl font-semibold">Miscellaneous Notes</h2>
-          <p className="text-gray-700 mt-2">
-            For more information on academic policies, visit the{" "}
-            <a href="#" className="text-blue-600 hover:underline">academic handbook</a>.
-          </p>
+        {/* Customized Holidays Section */}
+        <div className="p-4 bg-white shadow rounded-lg">
+          <h2 className="text-xl font-semibold mb-4">Holidays and Observances</h2>
+          <table className="w-full border">
+            <thead className="bg-gray-200 text-gray-700">
+              <tr>
+                <th className="border p-2">Holiday</th>
+                <th className="border p-2">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredItems(calendarData.holidays).map((holiday, index) => (
+                <tr key={index} className="text-gray-700">
+                  <td className="border p-2">{holiday.name}</td>
+                  <td className="border p-2">{holiday.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+
+        <Section title="Events and Activities" items={filteredItems(calendarData.events)} />
+
+        <Section title="Grading and Result Dates" items={filteredItems(calendarData.results)} />
+
+        <Section title="Internship and Placement Drives" items={filteredItems(calendarData.internships)} />
+
+        <Section title="Faculty Development Days" items={filteredItems(calendarData.facultyDevelopment)} />
       </div>
     </div>
   );
