@@ -83,6 +83,7 @@ const AttendanceManagement = () => {
 
         {/* Percentage Summary */}
         <div className="text-lg font-medium">
+       <u> <p><span className="font-semibold text-purple-600">Total 100%:</span>  </p></u>
           <p><span className="font-semibold text-green-600">Present:</span> {presentPercentage}%</p>
           <p><span className="font-semibold text-red-600">Absent:</span> {absentPercentage}%</p>
           <p><span className="font-semibold text-yellow-600">Leave:</span> {leavePercentage}%</p>

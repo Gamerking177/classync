@@ -19,7 +19,7 @@ const Sidebar = () => {
   // Static profile data
   const profileData = {
     name: "Game Play",
-    email: "gameplayapp007@gmail.com",
+    email: "gameplayap1@gmail.com",
     profilePic: DefaultProfile
   };
 
