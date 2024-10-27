@@ -1,9 +1,8 @@
-// src/components/Dashboard.js
 import React from 'react';
-import { Link } from "react-router-dom";
+import { motion } from 'framer-motion';
 
 const Dashboard = () => {
-    // Dummy data for announcements, activities, exams, and notifications
+    // Data for announcements, activities, exams, and notifications
     const announcements = [
         { id: 1, title: "Library Week", content: "Library week starts from Nov 1st to Nov 7th. All students are welcome!" },
         { id: 2, title: "Winter Vacation", content: "College will remain closed from Dec 25th to Jan 5th for winter break." },
@@ -28,92 +27,117 @@ const Dashboard = () => {
     ];
 
     return (
-        <div className="p-6 bg-gray-50 min-h-screen">
-            <h1 className="text-3xl font-semibold mb-6">Dashboard Overview</h1>
+        <div className="min-h-screen p-6 bg-gradient-to-br from-blue-100 to-purple-100">
+            <motion.header
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="text-center py-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg mb-6 shadow-lg"
+            >
+                <h1 className="text-3xl font-bold">Dashboard Overview</h1>
+            </motion.header>
 
-            {/* Announcements Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Announcements Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 ease-in-out"
+                >
                     <h2 className="text-2xl font-bold mb-4">Student Announcements</h2>
                     <ul className="space-y-4">
                         {announcements.map((announcement) => (
-                            <li key={announcement.id} className="border-b pb-2 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
+                            <motion.li
+                                key={announcement.id}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, delay: announcement.id * 0.1 }}
+                                className="border-b pb-2 hover:bg-blue-50 rounded-md px-2 transition-colors duration-200"
+                            >
                                 <h3 className="font-semibold">{announcement.title}</h3>
                                 <p>{announcement.content}</p>
-                            </li>
+                            </motion.li>
                         ))}
                     </ul>
-                </div>
+                </motion.div>
 
                 {/* Recent Activities Section */}
-                <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white shadow-md rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 ease-in-out"
+                >
                     <h2 className="text-2xl font-bold mb-4">Recent Activities</h2>
                     <ul className="space-y-4">
                         {recentActivities.map((activity) => (
-                            <li key={activity.id} className="flex justify-between border-b pb-2 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
+                            <motion.li
+                                key={activity.id}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.3, delay: activity.id * 0.1 }}
+                                className="flex justify-between border-b pb-2 hover:bg-blue-50 rounded-md px-2 transition-colors duration-200"
+                            >
                                 <span>{activity.activity}</span>
                                 <span className="text-sm text-gray-500">{activity.time}</span>
-                            </li>
+                            </motion.li>
                         ))}
                     </ul>
-                </div>
+                </motion.div>
             </div>
 
             {/* Upcoming Exams Section */}
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out mb-6">
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="bg-white shadow-md rounded-lg p-6 mt-6 hover:shadow-lg transition-shadow duration-300 ease-in-out"
+            >
                 <h2 className="text-2xl font-bold mb-4">Upcoming Exams</h2>
                 <ul className="space-y-4">
                     {upcomingExams.map((exam) => (
-                        <li key={exam.id} className="flex justify-between border-b pb-2 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
+                        <motion.li
+                            key={exam.id}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, delay: exam.id * 0.1 }}
+                            className="flex justify-between border-b pb-2 hover:bg-blue-50 rounded-md px-2 transition-colors duration-200"
+                        >
                             <div>
                                 <h3 className="font-semibold">{exam.subject}</h3>
                                 <p className="text-sm text-gray-500">{exam.date}</p>
                             </div>
                             <span className="text-sm text-gray-500">{exam.time}</span>
-                        </li>
+                        </motion.li>
                     ))}
                 </ul>
-            </div>
+            </motion.div>
 
             {/* Notifications Section */}
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out mb-6">
-                <h2 className="text-2xl font-bold mb-4">Important Notifications</h2>
+            <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="bg-white shadow-md rounded-lg p-6 mt-6 hover:shadow-lg transition-shadow duration-300 ease-in-out"
+            >
+                <h2 className="text-2xl font-bold mb-4">Notifications</h2>
                 <ul className="space-y-4">
                     {notifications.map((notification) => (
-                        <li key={notification.id} className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
-                            <div className="bg-blue-100 p-2 rounded-full">
-                                <span role="img" aria-label="notification" className="text-blue-500">🔔</span>
-                            </div>
-                            <span>{notification.message}</span>
-                        </li>
+                        <motion.li
+                            key={notification.id}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, delay: notification.id * 0.1 }}
+                            className="border-b pb-2 hover:bg-blue-50 rounded-md px-2 transition-colors duration-200"
+                        >
+                            <p>{notification.message}</p>
+                        </motion.li>
                     ))}
                 </ul>
-            </div>
-
-            {/* Extra Feature - Quick Links */}
-            <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-      <h2 className="text-2xl font-bold mb-4">Quick Links</h2>
-      <ul className="space-y-4">
-        <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
-          <span role="img" aria-label="link" className="text-green-500">📚</span>
-          <Link to="/library" className="text-blue-500 hover:underline">Library Resources</Link>
-        </li>
-        <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
-          <span role="img" aria-label="link" className="text-yellow-500">📝</span>
-          <Link to="/register-courses" className="text-blue-500 hover:underline">Course Registration</Link>
-        </li>
-        <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
-          <span role="img" aria-label="link" className="text-red-500">📅</span>
-          <Link to="/classSchedule" className="text-blue-500 hover:underline">Academic Calendar</Link>
-        </li>
-        <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
-          <span role="img" aria-label="link" className="text-purple-500">👥</span>
-          <Link to="/user-profile" className="text-blue-500 hover:underline">Student Support</Link>
-        </li>
-      </ul>
-    </div>
+            </motion.div>
         </div>
     );
-};
+}
 
 export default Dashboard;

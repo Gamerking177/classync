@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import AttendanceCalendar from './AttendanceCalendar';
 import AttendanceOverview from './AttendanceOverview'; // Assuming you have this component
+import { motion } from 'framer-motion';
+
+// Create a MotionLink component that uses the Link component with motion
+const MotionLink = motion(Link);
 
 const AttendanceManagement = () => {
   // Sample attendance records
@@ -34,47 +38,60 @@ const AttendanceManagement = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-100 to-blue-300 p-6">
-      <header className="text-center py-6 bg-blue-600 text-white rounded-lg mb-6 shadow-md">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 p-6">
+      <motion.header
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center py-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg mb-6 shadow-lg"
+      >
         <h1 className="text-3xl font-bold">Attendance Management</h1>
-      </header>
+      </motion.header>
 
       {/* Navigation Links */}
       <nav className="flex justify-center gap-4 mb-6">
-        <Link
-          to="/attendance-record"
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
-        >
-          Attendance Record
-        </Link>
-        <Link
-          to="/attendance-calendar"
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
-        >
-          Attendance Calendar
-        </Link>
-        <Link
-          to="/attendance-overview"
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
-        >
-          Attendance Overview
-        </Link>
+        {['/attendance-record', '/attendance-calendar', '/attendance-overview'].map((link, index) => (
+          <MotionLink
+            to={link}
+            key={index}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+          >
+            {link.split('/').pop().replace('-', ' ').replace(/^\w/, c => c.toUpperCase())}
+          </MotionLink>
+        ))}
       </nav>
 
-      {/* Pass the attendance records to the AttendanceCalendar component */}
-      <AttendanceCalendar
-        setDateFilter={setDateFilter}
-        dateFilter={dateFilter}
-        filteredRecords={attendanceRecords} // Pass the attendance records here
-      />
+      {/* Attendance Calendar */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-white shadow-md rounded-lg p-6 mt-6 hover:shadow-lg transition-shadow duration-300 ease-in-out"
+      >
+        <AttendanceCalendar
+          setDateFilter={setDateFilter}
+          dateFilter={dateFilter}
+          filteredRecords={attendanceRecords} // Pass the attendance records here
+        />
+      </motion.div>
 
-      {/* You can also add AttendanceOverview here if needed */}
-      <AttendanceOverview
-        attendanceData={attendanceData}
-        presentCount={presentCount}
-        absentCount={absentCount}
-        leaveCount={leaveCount}
-      />
+      {/* Attendance Overview */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="bg-white shadow-md rounded-lg p-6 mt-6 hover:shadow-lg transition-shadow duration-300 ease-in-out"
+      >
+        <AttendanceOverview
+          attendanceData={attendanceData}
+          presentCount={presentCount}
+          absentCount={absentCount}
+          leaveCount={leaveCount}
+        />
+      </motion.div>
     </div>
   );
 };
