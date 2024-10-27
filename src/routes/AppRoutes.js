@@ -4,7 +4,7 @@ import ProtectedRoute from '../route/protextiveroute';
 import { useAuth } from '../context/authContext/authContext'; // Adjusted path for useAuth
 import Dashboard from '../components/DashboardStats';
 import AcademicPerformance from '../components/marks&academic';
-import AttendanceManagement from '../pages/AttendanceManagement';
+import AttendanceManagement from '../attendancemanagement/AttendanceManagement';
 import ExamAssignmentSchedule from '../components/ExamAssignmentSchedule';
 import ClassSchedule from '../components/ClassSchedule';
 import FeesManagement from '../pages/FeesManagement';
@@ -12,6 +12,9 @@ import CourseRegistration from '../pages/CourseRegistration';
 import UserProfile from '../pages/UserProfile';
 import ReplyPage from '../Replypage';
 import Login from '../auth/login/login';
+import AttendanceRecord from '../attendancemanagement/AttendanceRecord';
+import AttendanceOverview from '../attendancemanagement/AttendanceOverview';
+import AttendanceCalendar from '../attendancemanagement/AttendanceCalendar';
 
 const AppRoutes = () => {
   const { userLoggedIn } = useAuth();
@@ -93,6 +96,10 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
+      <Route path="/" element={<AttendanceManagement />} />
+      <Route path="/attendance-record" element={<AttendanceRecord />} />
+      <Route path="/attendance-calendar" element={<AttendanceCalendar />} />
+      <Route path="/attendance-overview" element={<AttendanceOverview />} />
     </Routes>
   );
 };
