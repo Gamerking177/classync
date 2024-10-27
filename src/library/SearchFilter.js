@@ -1,20 +1,24 @@
 // src/components/SearchFilter.js
-import React from 'react';
+import React from "react";
 
-const SearchFilter = () => (
-    <div className="flex items-center space-x-4 mb-6">
-        <input
-            type="text"
-            placeholder="Search by title or author"
-            className="px-4 py-2 border rounded w-full"
-        />
-        <select className="px-4 py-2 border rounded">
-            <option value="All">All Categories</option>
-            <option value="Books">Books</option>
-            <option value="Journals">Journals</option>
-            <option value="E-books">E-books</option>
-        </select>
+const SearchFilter = () => {
+  return (
+    <div className="flex flex-col sm:flex-row items-center gap-4 bg-white p-4 rounded-lg shadow-md">
+      <input
+        type="text"
+        placeholder="Search by book title or author"
+        className="w-full sm:w-auto flex-grow p-2 border border-gray-300 rounded-lg focus:outline-none"
+      />
+      <select className="w-full sm:w-auto p-2 border border-gray-300 rounded-lg">
+        <option value="">All Categories</option>
+        <option value="fiction">Fiction</option>
+        <option value="non-fiction">Non-Fiction</option>
+        <option value="science">Science</option>
+        <option value="history">History</option>
+      </select>
+      <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Search</button>
     </div>
-);
+  );
+};
 
 export default SearchFilter;

@@ -1,18 +1,13 @@
 // src/components/DueDateReminders.js
-import React from 'react';
+import React from "react";
 
-const DueDateReminders = () => (
-    <div className="bg-yellow-50 p-4 shadow rounded-lg">
-        <h2 className="text-xl font-semibold mb-4">Due Date Reminders</h2>
-        <ul>
-            <li className="py-2 border-b text-red-600">
-                React Handbook - Overdue by 2 days
-            </li>
-            <li className="py-2 border-b text-yellow-600">
-                JavaScript Essentials - Due in 2 days
-            </li>
-        </ul>
+const DueDateReminders = () => {
+  return (
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold mb-4">Due Date Reminders</h3>
+      <p className="text-gray-600">Stay updated with upcoming due dates for borrowed books to avoid late fees.</p>
     </div>
-);
+  );
+};
 
 export default DueDateReminders;

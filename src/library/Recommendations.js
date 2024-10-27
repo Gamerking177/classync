@@ -1,15 +1,26 @@
 // src/components/Recommendations.js
-import React from 'react';
+import React from "react";
 
-const Recommendations = () => (
-    <div className="bg-white p-4 shadow rounded-lg">
-        <h2 className="text-xl font-semibold mb-4">Recommended for You</h2>
-        <ul>
-            <li className="py-2 border-b">Learn JavaScript Quickly - Author: Alex</li>
-            <li className="py-2 border-b">Understanding React - Author: Sarah</li>
-            <li className="py-2 border-b">Data Science with Python - Author: Mike</li>
-        </ul>
+const recommendations = [
+  "To Kill a Mockingbird",
+  "Pride and Prejudice",
+  "Moby-Dick",
+  // Add more recommended books
+];
+
+const Recommendations = () => {
+  return (
+    <div className="bg-white p-6 rounded-lg shadow-md">
+      <h3 className="text-xl font-bold mb-4">Recommended for You</h3>
+      <ul className="space-y-2">
+        {recommendations.map((book, index) => (
+          <li key={index} className="text-gray-800 hover:text-blue-500 transition duration-200">
+            {book}
+          </li>
+        ))}
+      </ul>
     </div>
-);
+  );
+};
 
 export default Recommendations;

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import 'react-calendar/dist/Calendar.css'; // Import calendar styles
+import Calendar from 'react-calendar'; // Import calendar library
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -46,6 +48,11 @@ function AttendanceManagement() {
   const [subjectFilter, setSubjectFilter] = useState('');
   const [semesterFilter, setSemesterFilter] = useState('');
 
+  // Refs for scrolling to sections
+  const recordRef = useRef(null);
+  const calendarRef = useRef(null);
+  const overviewRef = useRef(null);
+
   const filteredRecords = attendanceRecords.filter(record => {
     const dateMatch = dateFilter ? record.date === dateFilter : true;
     const subjectMatch = subjectFilter ? record.subject === subjectFilter : true;
@@ -60,64 +67,51 @@ function AttendanceManagement() {
         <h1 className="text-3xl font-bold">Attendance Management</h1>
       </header>
 
-      {/* Filters */}
-      <section className="bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4">Filters</h2>
-        <div className="flex gap-4">
-          <input
-            type="date"
-            className="p-2 border rounded-lg shadow-sm w-full hover:border-blue-400 focus:border-blue-400"
-            value={dateFilter}
-            onChange={(e) => setDateFilter(e.target.value)}
-          />
-          <select
-            className="p-2 border rounded-lg shadow-sm w-full hover:border-blue-400 focus:border-blue-400"
-            value={subjectFilter}
-            onChange={(e) => setSubjectFilter(e.target.value)}
-          >
-            <option value="">All Subjects</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Business">Business</option>
-          </select>
-          <select
-            className="p-2 border rounded-lg shadow-sm w-full hover:border-blue-400 focus:border-blue-400"
-            value={semesterFilter}
-            onChange={(e) => setSemesterFilter(e.target.value)}
-          >
-            <option value="">All Semesters</option>
-            <option value="Semester 1">Semester 1</option>
-            <option value="Semester 2">Semester 2</option>
-          </select>
+      {/* Navigation Links */}
+      <nav className="flex justify-center gap-4 mb-6">
+        <button
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+          onClick={() => recordRef.current.scrollIntoView({ behavior: 'smooth' })}
+        >
+          Attendance Record
+        </button>
+        <button
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+          onClick={() => calendarRef.current.scrollIntoView({ behavior: 'smooth' })}
+        >
+          Attendance Calendar
+        </button>
+        <button
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+          onClick={() => overviewRef.current.scrollIntoView({ behavior: 'smooth' })}
+        >
+          Attendance Overview
+        </button>
+      </nav>
+
+      {/* Attendance Table */}
+      <section ref={recordRef} className="bg-white shadow-md rounded-lg p-6 mb-6">
+        <h2 className="text-xl font-semibold mb-4">Attendance Record (Last 3 Months)</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {filteredRecords.map((record, index) => (
+            <div key={index} className="border rounded-lg p-4 transition duration-200 hover:shadow-lg">
+              <h3 className="text-lg font-bold">{record.date}</h3>
+              <p className={`text-xl ${record.status === 'Present' ? 'text-green-600' : record.status === 'Absent' ? 'text-red-600' : 'text-yellow-600'}`}>
+                {record.status}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Attendance Table */}
-      <section className="bg-white shadow-md rounded-lg p-6 mb-6">
-        <h2 className="text-xl font-semibold mb -4">Attendance Record (Last 3 Months)</h2>
-        <table className="w-full text-left border-collapse hover:shadow-lg transition-shadow duration-200">
-          <thead>
-            <tr className="bg-blue-200">
-              <th className="p-3 border">Date</th>
-              <th className="p-3 border">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredRecords.map((record, index) => (
-              <tr key={index} className="transition duration-200 hover:bg-gray-100">
-                <td className="p-3 border">{record.date}</td>
-                <td className={`p-3 border ${record.status === 'Present' ? 'text-green-600' : record.status === 'Absent' ? 'text-red-600' : 'text-yellow-600'}`}>
-                  {record.status}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
-
       {/* Attendance Calendar */}
-      <section className="bg-white shadow-md rounded-lg p-6 mb-6">
+      <section ref={calendarRef} className="bg-white shadow-md rounded-lg p-6 mb-6">
         <h2 className="text-xl font-semibold mb-4">Attendance Calendar</h2>
+        <Calendar
+          onChange={setDateFilter}
+          value={dateFilter}
+          className="rounded-lg shadow-sm"
+        />
         <div className="grid grid-cols-7 gap-2">
           {Array.from({ length: 30 }, (_, i) => i + 1).map(day => (
             <div key={day} className="p-2 border rounded-lg hover:bg-gray-100 transition duration-200">
@@ -133,7 +127,7 @@ function AttendanceManagement() {
       </section>
 
       {/* Attendance Pie Chart */}
-      <section className="bg-white shadow-md rounded-lg p-6">
+      <section ref={overviewRef} className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-xl font-semibold mb-4">Attendance Overview</h2>
         <div className="w-1/2 mx-auto">
           <Pie data={attendanceData} />

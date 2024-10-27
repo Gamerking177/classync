@@ -1,14 +1,16 @@
 // src/components/BookDetails.js
-import React from 'react';
+import React from "react";
 
-const BookDetails = ({ book }) => (
-    <div className="bg-white p-4 shadow rounded-lg">
-        <h2 className="text-2xl font-semibold">{book.title}</h2>
-        <p className="text-gray-600">Author: {book.author}</p>
-        <p className="text-gray-600">Status: {book.availability}</p>
-        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Reserve Book</button>
-        <button className="mt-4 px-4 py-2 bg-green-500 text-white rounded ml-2">Renew</button>
+const BookDetails = ({ book }) => {
+  return (
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-2">{book.title}</h2>
+      <p className="text-gray-700 mb-1">Author: {book.author}</p>
+      <p className="text-gray-700 mb-4">Genre: {book.genre}</p>
+      <p className="text-gray-600">This book covers various insights and interesting concepts. A must-read for enthusiasts of {book.genre}.</p>
+      <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg w-full">Reserve Book</button>
     </div>
-);
+  );
+};
 
 export default BookDetails;
