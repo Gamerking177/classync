@@ -4,7 +4,6 @@ import Navbar from './ScheduleDashboard';
 function ExamAssignmentSchedule() {
   // Define selectedTab state to keep track of the active tab
   const [selectedTab, setSelectedTab] = useState('exams');
-
   const upcomingExams = [
     { subject: 'Mathematics', date: '2024-11-20' },
     { subject: 'Physics', date: '2024-11-25' },

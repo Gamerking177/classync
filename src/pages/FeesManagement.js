@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { saveAs } from 'file-saver'; // To save the receipt as a file
 
 const FeesManagement = () => {
     const [selectedSemester, setSelectedSemester] = useState("1st");
+    const [isLoading, setIsLoading] = useState(false);
 
     // Dummy data for semester-wise fee structure and payments
     const feesData = {
@@ -56,14 +58,27 @@ const FeesManagement = () => {
 
     const semesterFees = feesData[selectedSemester];
 
+    const handlePayment = () => {
+        setIsLoading(true);
+        // Simulate a payment process
+        setTimeout(() => {
+            setIsLoading(false);
+            alert("Payment Successful!");
+
+            // Create a PDF receipt (for demonstration, just a plain text)
+            const blob = new Blob([`Receipt\nSemester: ${selectedSemester}\nAmount: ₹${semesterFees.pending}`], { type: 'text/plain;charset=utf-8' });
+            saveAs(blob, `Payment_Receipt_${selectedSemester}.txt`);
+        }, 2000); // Simulate a network delay
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="p-6 bg-gray-50 min-h-screen"
+            className="p-8 bg-gray-100 min-h-screen"
         >
-            <h1 className="text-3xl font-semibold mb-6">Fees Management</h1>
+            <h1 className="text-4xl font-bold mb-6 text-center">Fees Management</h1>
 
             {/* Semester Filter */}
             <div className="mb-6">
@@ -71,7 +86,7 @@ const FeesManagement = () => {
                 <select 
                     onChange={handleSemesterChange} 
                     value={selectedSemester} 
-                    className="w-full p-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
+                    className="w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500"
                 >
                     <option value="1st">1st Semester</option>
                     <option value="2nd">2nd Semester</option>
@@ -85,9 +100,9 @@ const FeesManagement = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white p-6 rounded-lg shadow-md mb-6"
+                className="bg-white p-6 rounded-lg shadow-md mb-6 border border-gray-300"
             >
-                <h2 className="text-2xl font-bold mb-4">Fee Structure for {selectedSemester} Semester</h2>
+                <h2 className="text-3xl font-semibold mb-4">Fee Structure for {selectedSemester} Semester</h2>
                 <ul className="space-y-4">
                     <li className="flex justify-between">
                         <span className="font-medium">Tuition Fee:</span>
@@ -123,9 +138,9 @@ const FeesManagement = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="bg-white p-6 rounded-lg shadow-md mb-6"
+                className="bg-white p-6 rounded-lg shadow-md mb-6 border border-gray-300"
             >
-                <h2 className="text-2xl font-bold mb-4">Previous Payments</h2>
+                <h2 className="text-3xl font-semibold mb-4">Previous Payments</h2>
                 <ul className="space-y-4">
                     {previousPayments.map((payment, index) => (
                         <li key={index} className="flex justify-between">
@@ -141,13 +156,13 @@ const FeesManagement = () => {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
-                className="bg-white p-6 rounded-lg shadow-md"
+                className="bg-white p-6 rounded-lg shadow-md border border-gray-300"
             >
-                <h2 className="text-2xl font-bold mb-4">Make a Payment</h2>
+                <h2 className="text-3xl font-semibold mb-4">Make a Payment</h2>
                 <form className="space-y-4">
                     <div className="flex justify-between items-center">
                         <label className="font-medium">Select Fees to Pay:</label>
-                        <select className="p-2 border rounded-lg shadow-sm focus:outline-none focus:border-blue-500">
+                        <select className="p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-500">
                             <option>Tuition</option>
                             <option>Hostel</option>
                             <option>Library</option>
@@ -172,9 +187,11 @@ const FeesManagement = () => {
 
                     <button 
                         type="button" 
-                        className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
+                        onClick={handlePayment}
+                        className={`w-full bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={isLoading}
                     >
-                        Pay Now
+                        {isLoading ? 'Processing...' : 'Pay Now'}
                     </button>
                 </form>
             </motion.div>

@@ -53,14 +53,15 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
-      <Route 
-        path="/ExamAssignmentSchedule" 
-        element={
-          <ProtectedRoute isAuthenticated={userLoggedIn}>
-            <ExamAssignmentSchedule />
-          </ProtectedRoute> 
-        } 
-      />
+     <Route 
+  path="/exam-assignment-schedule" 
+  element={
+    <ProtectedRoute isAuthenticated={userLoggedIn}>
+      <ExamAssignmentSchedule />
+    </ProtectedRoute> 
+  } 
+/>
+
       <Route 
         path="/ClassSchedule" 
         element={
