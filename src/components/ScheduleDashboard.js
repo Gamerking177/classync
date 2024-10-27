@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaCalendarAlt, FaClipboardList } from 'react-icons/fa';
 
-function Navbar({ selectedTab, setSelectedTab }) {
+function ScheduleDashboard({ selectedTab, setSelectedTab }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300">
       <div className="flex space-x-6">
@@ -33,4 +33,4 @@ function Navbar({ selectedTab, setSelectedTab }) {
   );
 }
 
-export default Navbar;
+export default ScheduleDashboard;
