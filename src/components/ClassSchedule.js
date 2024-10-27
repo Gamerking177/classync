@@ -5,49 +5,37 @@ function ClassSchedule() {
   const [semester, setSemester] = useState('Fall 2023');
   const [course, setCourse] = useState('All Courses');
 
+  // Example course options
   const courses = ['All Courses', 'BCA', 'BTech', 'MCA', 'MBA'];
 
   const weeklySchedule = {
     'Fall 2023': {
-      'BCA': [
-        { day: 'Monday', startTime: '9:00 AM', endTime: '10:30 AM', subject: 'Mathematics', room: 'Room 101' },
-        { day: 'Wednesday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Computer Science', room: 'Room 102' },
-        { day: 'Friday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'English', room: 'Room 103' },
+      BCA: [
+        { day: 'Monday', startTime: '9:00 AM', endTime: '10:30 AM', subject: 'Mathematics, Statistics, Physics', room: 'Room 101' },
+        { day: 'Wednesday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Computer Science, Data Analysis, Networks', room: 'Room 102' },
+        { day: 'Friday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'English, Literature, Communication Skills', room: 'Room 103' },
       ],
-      'BTech': [
-        { day: 'Tuesday', startTime: '10:00 AM', endTime: '11:30 AM', subject: 'Engineering Mechanics', room: 'Room 201' },
-        { day: 'Thursday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Data Structures', room: 'Room 202' },
+      BTech: [
+        { day: 'Tuesday', startTime: '10:00 AM', endTime: '11:30 AM', subject: 'Engineering Mechanics, Thermodynamics, Physics', room: 'Room 201' },
+        { day: 'Thursday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Data Structures, Algorithms, Operating Systems', room: 'Room 202' },
       ],
-      'MCA': [
-        { day: 'Monday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Database Management Systems', room: 'Room 301' },
+      MCA: [
+        { day: 'Monday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Database Management Systems, Software Engineering, AI', room: 'Room 301' },
       ],
-      'MBA': [
-        { day: 'Wednesday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Business Management', room: 'Room 401' },
+      MBA: [
+        { day: 'Wednesday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Business Management, Marketing, Economics', room: 'Room 401' },
       ],
     },
   };
 
   const monthlySchedule = [
-    { week: 'Week 1', subjects: [
-      { subject: 'Mathematics', day: 'Monday', room: 'Room 101' },
-      { subject: 'Computer Science', day: 'Wednesday', room: 'Room 102' },
-      { subject: 'English', day: 'Friday', room: 'Room 103' },
-    ]},
-    { week: 'Week 2', subjects: [
-      { subject: 'Engineering Mechanics', day: 'Tuesday', room: 'Room 201' },
-      { subject: 'Data Structures', day: 'Thursday', room: 'Room 202' },
-    ]},
-    { week: 'Week 3', subjects: [
-      { subject: 'Database Management Systems', day: 'Monday', room: 'Room 301' },
-      { subject: 'Business Management', day: 'Wednesday', room: 'Room 401' },
-    ]},
-    { week: 'Week 4', subjects: [
-      { subject: 'Mathematics', day: 'Monday', room: 'Room 101' },
-      { subject: 'Engineering Mechanics', day: 'Tuesday', room: 'Room 201' },
-    ]},
+    { week: 'Week 1', subjects: 'Mathematics, Statistics, Physics' },
+    { week: 'Week 2', subjects: 'Engineering Mechanics, Thermodynamics, Physics' },
+    { week: 'Week 3', subjects: 'Database Management Systems, Software Engineering, AI' },
+    { week: 'Week 4', subjects: 'Business Management, Marketing, Economics' },
   ];
 
-  const filteredWeeklySchedule = Object.entries(weeklySchedule[semester]).flatMap(([courseName, sessions]) => 
+  const filteredWeeklySchedule = Object.entries(weeklySchedule[semester]).flatMap(([courseName, sessions]) =>
     course === 'All Courses' || course === courseName ? sessions : []
   );
 
@@ -136,21 +124,15 @@ function ClassSchedule() {
               <thead>
                 <tr className="bg-gray-200">
                   <th className="border px-4 py-2">Week</th>
-                  <th className="border px-4 py-2">Day</th>
-                  <th className="border px-4 py-2">Subject</th>
-                  <th className="border px-4 py-2">Room No.</th>
+                  <th className="border px-4 py-2">Subjects</th>
                 </tr>
               </thead>
               <tbody>
                 {monthlySchedule.map((week, index) => (
-                  week.subjects.map((subject, idx) => (
-                    <tr key={`${index}-${idx}`} className="border-b">
-                      {idx === 0 && <td className="border px-4 py-2" rowSpan={week.subjects.length}>{week.week}</td>}
-                      <td className="border px-4 py-2">{subject.day}</td>
-                      <td className="border px-4 py-2">{subject.subject}</td>
-                      <td className="border px-4 py-2">{subject.room}</td>
-                    </tr>
-                  ))
+                  <tr key={index} className="border-b">
+                    <td className="border px-4 py-2">{week.week}</td>
+                    <td className="border px-4 py-2">{week.subjects}</td>
+                  </tr>
                 ))}
               </tbody>
             </table>
