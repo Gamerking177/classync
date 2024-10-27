@@ -1,30 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaCalendarAlt, FaClipboardList } from 'react-icons/fa';
 
 function Navbar({ selectedTab, setSelectedTab }) {
   return (
-    <nav className="bg-blue-600 p-4 flex justify-center">
-      <Link
-        to="/ClassSchedule"
-        onClick={() => setSelectedTab('ClassSchedule')}
-        className={`mx-2 flex items-center justify-center h-32 w-64 text-center text-white bg-blue-700 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105`}
-      >
-        <div className="flex flex-col justify-center">
-          <span className="text-lg font-semibold">Class Schedule</span>
-          <span className="text-sm">& Time Table</span>
-        </div>
-      </Link>
-      <Link
-        to="/ExamAssignmentSchedule"
-        onClick={() => setSelectedTab('ExamAssignmentSchedule')}
-        className={`mx-2 flex items-center justify-center h-32 w-64 text-center text-white bg-blue-700 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105`}
-      >
-        <div className="flex flex-col justify-center">
-          <span className="text-lg font-semibold">Exam Schedule</span>
-          <span className="text-sm"> & Assignment</span>
-        </div>
-      </Link>
-    </nav>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300">
+      <div className="flex space-x-6">
+        
+        {/* Class Schedule Box */}
+        <Link
+          to="/ClassSchedule"
+          onClick={() => setSelectedTab('ClassSchedule')}
+          className="flex flex-col items-center justify-center w-64 h-48 bg-white rounded-xl shadow-lg border border-blue-200 transition-transform transform hover:scale-105 hover:shadow-2xl"
+        >
+          <FaCalendarAlt className="text-blue-600 text-4xl mb-3" />
+          <h3 className="text-xl font-bold text-blue-800">Class Schedule</h3>
+          <p className="text-gray-500 text-sm">View your daily schedule</p>
+        </Link>
+
+        {/* Exam Schedule Box */}
+        <Link
+          to="/ExamAssignmentSchedule"
+          onClick={() => setSelectedTab('ExamAssignmentSchedule')}
+          className="flex flex-col items-center justify-center w-64 h-48 bg-white rounded-xl shadow-lg border border-blue-200 transition-transform transform hover:scale-105 hover:shadow-2xl"
+        >
+          <FaClipboardList className="text-blue-600 text-4xl mb-3" />
+          <h3 className="text-xl font-bold text-blue-800">Exam Schedule</h3>
+          <p className="text-gray-500 text-sm">Check assignments & exams</p>
+        </Link>
+      </div>
+    </div>
   );
 }
 
