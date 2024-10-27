@@ -1,5 +1,5 @@
-// src/components/FeesManagement.js
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const FeesManagement = () => {
     const [selectedSemester, setSelectedSemester] = useState("1st");
@@ -57,9 +57,14 @@ const FeesManagement = () => {
     const semesterFees = feesData[selectedSemester];
 
     return (
-        <div className="p-6 bg-gray-50 min-h-screen">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="p-6 bg-gray-50 min-h-screen"
+        >
             <h1 className="text-3xl font-semibold mb-6">Fees Management</h1>
-            
+
             {/* Semester Filter */}
             <div className="mb-6">
                 <label className="block text-lg font-medium mb-2">Select Semester:</label>
@@ -76,7 +81,12 @@ const FeesManagement = () => {
             </div>
 
             {/* Fees Details for Selected Semester */}
-            <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+            <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="bg-white p-6 rounded-lg shadow-md mb-6"
+            >
                 <h2 className="text-2xl font-bold mb-4">Fee Structure for {selectedSemester} Semester</h2>
                 <ul className="space-y-4">
                     <li className="flex justify-between">
@@ -106,10 +116,15 @@ const FeesManagement = () => {
                 </div>
                 <div className="mt-2 text-red-500">Pending Due: ₹{semesterFees.pending}</div>
                 <div className="mt-1 text-gray-600">Payment Deadline: {semesterFees.deadline}</div>
-            </div>
+            </motion.div>
 
             {/* Previous Payments */}
-            <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+            <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="bg-white p-6 rounded-lg shadow-md mb-6"
+            >
                 <h2 className="text-2xl font-bold mb-4">Previous Payments</h2>
                 <ul className="space-y-4">
                     {previousPayments.map((payment, index) => (
@@ -119,10 +134,15 @@ const FeesManagement = () => {
                         </li>
                     ))}
                 </ul>
-            </div>
+            </motion.div>
 
-            {/* Payment Form */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
+            {/* Payment Form with Online Payment Options */}
+            <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="bg-white p-6 rounded-lg shadow-md"
+            >
                 <h2 className="text-2xl font-bold mb-4">Make a Payment</h2>
                 <form className="space-y-4">
                     <div className="flex justify-between items-center">
@@ -139,6 +159,17 @@ const FeesManagement = () => {
                         <span className="font-medium">Amount to Pay:</span>
                         <span>₹{semesterFees.pending}</span>
                     </div>
+
+                    {/* Online Payment Options */}
+                    <div className="flex justify-between items-center mb-4">
+                        <label className="font-medium">Select Payment Method:</label>
+                        <div className="flex space-x-2">
+                            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition">Credit/Debit Card</button>
+                            <button className="bg-green-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-green-600 transition">UPI</button>
+                            <button className="bg-purple-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-purple-600 transition">Net Banking</button>
+                        </div>
+                    </div>
+
                     <button 
                         type="button" 
                         className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600 transition"
@@ -146,8 +177,8 @@ const FeesManagement = () => {
                         Pay Now
                     </button>
                 </form>
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 };
 
