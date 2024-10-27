@@ -1,44 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-// Generate dummy data for three semesters with random attendance statuses
-const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 const statuses = ["Present", "Absent", "Late"];
 const subjects = ["Mathematics", "Physics", "Chemistry"];
+const COLORS = ['#0088FE', '#FF8042', '#FFBB28'];
 
-// Updated generateDummyData function with October data included
 const generateDummyData = () => {
     const data = [];
-    months.forEach((month, index) => {
-        const semester = index < 4 ? 'Semester 1' : index < 8 ? 'Semester 2' : 'Semester 3';
-        for (let day = 1; day <= 28; day += 7) { // Adding 4 entries per month
-            const date = `2024-${month}-${String(day).padStart(2, '0')}`; // Adjusted to current year, 2024
-            subjects.forEach((subject) => {
-                const status = statuses[Math.floor(Math.random() * statuses.length)];
-                data.push({ date, subject, status, semester });
-            });
-        }
-    });
+    const today = new Date();
+    for (let i = 0; i < 365; i++) {
+        const date = new Date(today);
+        date.setDate(today.getDate() - i);
+        const formattedDate = date.toISOString().slice(0, 10);
+        
+        const semester = date.getMonth() < 4 ? 'Semester 1' : date.getMonth() < 8 ? 'Semester 2' : 'Semester 3';
+        subjects.forEach((subject) => {
+            const status = statuses[Math.floor(Math.random() * statuses.length)];
+            data.push({ date: formattedDate, subject, status, semester });
+        });
+    }
     return data;
 };
 
 const dummyData = generateDummyData();
 
-const COLORS = ['#0088FE', '#FF8042', '#FFBB28']; // Colors for Present, Absent, and Late
-
 const AttendanceRecord = () => {
-    // Get today's date in YYYY-MM-DD format
-    const todayDate = new Date().toISOString().slice(0, 10);
-    const [dateFilter, setDateFilter] = useState(todayDate); // Default to today's date
+    const mostRecentDate = dummyData[0].date;
+    const [dateFilter, setDateFilter] = useState(mostRecentDate);
     const [semesterFilter, setSemesterFilter] = useState('All Semesters');
 
-    // Filtered records based on the selected semester and date (initially today)
-    const filteredRecords = dummyData.filter(record => 
+    const filteredRecords = dummyData.filter(record =>
         (semesterFilter === 'All Semesters' || record.semester === semesterFilter) &&
         (dateFilter ? record.date === dateFilter : true)
     );
 
-    // Count attendance statuses for pie chart and summary data
     const attendanceSummary = filteredRecords.reduce(
         (acc, record) => {
             acc.total += 1;
@@ -58,23 +53,27 @@ const AttendanceRecord = () => {
 
     return (
         <section className="bg-gray-50 p-6 rounded-lg shadow-md flex flex-col md:flex-row gap-6">
-            {/* Current Date Box */}
             <div className="absolute top-4 right-4 bg-blue-200 text-blue-800 font-semibold p-2 rounded-lg shadow-sm">
-                <p>Today's Date: {todayDate}</p>
+                <p>Today's Date: {new Date().toISOString().slice(0, 10)}</p>
             </div>
 
-            {/* Left Side: Subjects and Status */}
             <div className="flex-1">
-                <h2 className="text-xl font-semibold mb-4">Attendance Record (Selected Date)</h2>
+                <h2 className="text-xl font-semibold mb-4">Attendance Record (Most Recent)</h2>
 
-                {/* Semester Filter Control */}
                 <div className="mb-4">
                     <label htmlFor="semesterFilter" className="mr-2">Select Semester:</label>
                     <select
                         id="semesterFilter"
                         className="border p-2 rounded"
                         value={semesterFilter}
-                        onChange={(e) => setSemesterFilter(e.target.value)}
+                        onChange={(e) => {
+                            setSemesterFilter(e.target.value);
+                            if (e.target.value !== "All Semesters") {
+                                setDateFilter(''); // Clear date filter if specific semester is selected
+                            } else {
+                                setDateFilter(mostRecentDate); // Reset to most recent date for "All Semesters"
+                            }
+                        }}
                     >
                         <option value="All Semesters">All Semesters</option>
                         <option value="Semester 1">Semester 1</option>
@@ -83,7 +82,6 @@ const AttendanceRecord = () => {
                     </select>
                 </div>
 
-                {/* Date Filter Control */}
                 <div className="mb-4">
                     <input
                         type="date"
@@ -91,10 +89,10 @@ const AttendanceRecord = () => {
                         value={dateFilter}
                         onChange={(e) => setDateFilter(e.target.value)}
                         placeholder="Select a date"
+                        disabled={semesterFilter !== "All Semesters"} // Disable if specific semester is selected
                     />
                 </div>
 
-                {/* Subject-wise Attendance Records for Selected Date */}
                 <div className="space-y-2">
                     {filteredRecords.length > 0 ? (
                         filteredRecords.map((record, index) => (
@@ -113,12 +111,10 @@ const AttendanceRecord = () => {
                 </div>
             </div>
 
-            {/* Right Side: Summary and Chart */}
             <div className="flex-1">
-                {/* Total Attendance Summary */}
                 <div className="bg-white p-4 rounded-lg shadow-md mb-6">
                     <h2 className="text-lg font-semibold mb-4">
-                        Attendance Summary for {semesterFilter} on {dateFilter}
+                        Attendance Summary for {semesterFilter} {dateFilter && `on ${dateFilter}`}
                     </h2>
                     <div className="grid grid-cols-2 gap-4 text-center">
                         <div className="border rounded-lg p-4">
@@ -140,7 +136,6 @@ const AttendanceRecord = () => {
                     </div>
                 </div>
 
-                {/* Pie Chart */}
                 <div className="bg-white p-4 rounded-lg shadow-md">
                     <h2 className="text-lg font-semibold mb-4">Attendance Distribution</h2>
                     <ResponsiveContainer width="100%" height={250}>
