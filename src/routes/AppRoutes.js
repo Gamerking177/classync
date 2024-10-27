@@ -1,7 +1,8 @@
+// src/AppRoutes.js
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ProtectedRoute from '../route/protextiveroute'; 
-import { useAuth } from '../context/authContext/authContext'; // Adjusted path for useAuth
+import { useAuth } from '../context/authContext/authContext';
 import Dashboard from '../components/DashboardStats';
 import AcademicPerformance from '../components/marks&academic';
 import AttendanceManagement from '../pages/AttendanceManagement';
@@ -12,6 +13,7 @@ import CourseRegistration from '../pages/CourseRegistration';
 import UserProfile from '../pages/UserProfile';
 import ReplyPage from '../Replypage';
 import Login from '../auth/login/login';
+import LibraryPage from '../library/LibraryPage'; // Import the LibraryPage component
 
 const AppRoutes = () => {
   const { userLoggedIn } = useAuth();
@@ -90,6 +92,15 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute isAuthenticated={userLoggedIn}>
             <ReplyPage />
+          </ProtectedRoute>
+        } 
+      />
+      {/* Library Page Route */}
+      <Route 
+        path="/library" 
+        element={
+          <ProtectedRoute isAuthenticated={userLoggedIn}>
+            <LibraryPage />
           </ProtectedRoute>
         } 
       />
