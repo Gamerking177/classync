@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AttendanceCalendar from './AttendanceCalendar';
-import AttendanceOverview from './AttendanceOverview'; // Assuming you have this component
-import { motion } from 'framer-motion';
+  import { motion } from 'framer-motion';
 
 // Create a MotionLink component that uses the Link component with motion
 const MotionLink = motion(Link);
@@ -64,34 +62,9 @@ const AttendanceManagement = () => {
         ))}
       </nav>
 
-      {/* Attendance Calendar */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="bg-white shadow-md rounded-lg p-6 mt-6 hover:shadow-lg transition-shadow duration-300 ease-in-out"
-      >
-        <AttendanceCalendar
-          setDateFilter={setDateFilter}
-          dateFilter={dateFilter}
-          filteredRecords={attendanceRecords} // Pass the attendance records here
-        />
-      </motion.div>
+       
 
-      {/* Attendance Overview */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
-        className="bg-white shadow-md rounded-lg p-6 mt-6 hover:shadow-lg transition-shadow duration-300 ease-in-out"
-      >
-        <AttendanceOverview
-          attendanceData={attendanceData}
-          presentCount={presentCount}
-          absentCount={absentCount}
-          leaveCount={leaveCount}
-        />
-      </motion.div>
+       
     </div>
   );
 };
