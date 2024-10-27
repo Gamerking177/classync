@@ -1,11 +1,10 @@
-// src/AppRoutes.js
-import React from 'react';
+import React, { useState } from 'react'; // Import useState
 import { Route, Routes } from 'react-router-dom';
 import ProtectedRoute from '../route/protextiveroute'; 
 import { useAuth } from '../context/authContext/authContext';
 import Dashboard from '../components/DashboardStats';
 import AcademicPerformance from '../components/marks&academic';
-import AttendanceManagement from '../pages/AttendanceManagement';
+import AttendanceManagement from '../attendancemanagement/AttendanceManagement';
 import ExamAssignmentSchedule from '../components/ExamAssignmentSchedule';
 import ClassSchedule from '../components/ClassSchedule';
 import FeesManagement from '../pages/FeesManagement';
@@ -13,10 +12,17 @@ import CourseRegistration from '../pages/CourseRegistration';
 import UserProfile from '../pages/UserProfile';
 import ReplyPage from '../Replypage';
 import Login from '../auth/login/login';
-import LibraryPage from '../library/LibraryPage'; // Import the LibraryPage component
+import AttendanceRecord from '../attendancemanagement/AttendanceRecord';
+import AttendanceOverview from '../attendancemanagement/AttendanceOverview';
+import AttendanceCalendar from '../attendancemanagement/AttendanceCalendar';
+import LibraryPage from '../library/LibraryPage';
+import ScheduleDashboard from '../components/ScheduleDashboard';
 
 const AppRoutes = () => {
   const { userLoggedIn } = useAuth();
+  
+  // Move useState inside the component
+  const [selectedTab, setSelectedTab] = useState(null);
 
   return (
     <Routes>
@@ -52,14 +58,22 @@ const AppRoutes = () => {
         element={
           <ProtectedRoute isAuthenticated={userLoggedIn}>
             <ExamAssignmentSchedule />
+          </ProtectedRoute> 
+        } 
+      />
+      <Route 
+        path="/ClassSchedule" 
+        element={
+          <ProtectedRoute isAuthenticated={userLoggedIn}>
+            <ClassSchedule />
           </ProtectedRoute>
         } 
       />
       <Route 
-        path="/classSchedule" 
+        path="/ScheduleDashboard" 
         element={
           <ProtectedRoute isAuthenticated={userLoggedIn}>
-            <ClassSchedule />
+            <ScheduleDashboard selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
           </ProtectedRoute>
         } 
       />
@@ -95,7 +109,6 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
-      {/* Library Page Route */}
       <Route 
         path="/library" 
         element={
@@ -104,6 +117,11 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
+
+      {/* Additional Attendance Routes */}
+      <Route path="/attendance-record" element={<AttendanceRecord />} />
+      <Route path="/attendance-calendar" element={<AttendanceCalendar />} />
+      <Route path="/attendance-overview" element={<AttendanceOverview />} />
     </Routes>
   );
 };

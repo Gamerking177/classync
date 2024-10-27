@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
-import AppRoutes from './routes/AppRoutes'; // Ensure this import is correct
+import AppRoutes from './routes/AppRoutes'; 
 import { useAuth } from './context/authContext/authContext';
+
 
 const App = () => {
   const { userLoggedIn } = useAuth();

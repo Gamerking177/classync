@@ -66,9 +66,9 @@ const Sidebar = () => (
 
 
                 <li className="mb-4">
-                    <NavLink
-                        to="/Navbar"
-                        className={({ isActive }) =>
+                    <NavLink 
+                        to="/ScheduleDashboard" 
+                        className={({ isActive }) => 
                             `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
                         }
                     >
