@@ -1,7 +1,8 @@
+// src/AppRoutes.js
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ProtectedRoute from '../route/protextiveroute'; 
-import { useAuth } from '../context/authContext/authContext'; // Adjusted path for useAuth
+import { useAuth } from '../context/authContext/authContext';
 import Dashboard from '../components/DashboardStats';
 import AcademicPerformance from '../components/marks&academic';
 import AttendanceManagement from '../attendancemanagement/AttendanceManagement';
@@ -12,10 +13,12 @@ import CourseRegistration from '../pages/CourseRegistration';
 import UserProfile from '../pages/UserProfile';
 import ReplyPage from '../Replypage';
 import Login from '../auth/login/login';
-import AttendanceRecord from '../attendancemanagement/AttendanceRecord';
+ import AttendanceRecord from '../attendancemanagement/AttendanceRecord';
 import AttendanceOverview from '../attendancemanagement/AttendanceOverview';
 import AttendanceCalendar from '../attendancemanagement/AttendanceCalendar';
-
+ import LibraryPage from '../library/LibraryPage'; // Import the LibraryPage component
+import Navbar from '../components/Navbar';
+ 
 const AppRoutes = () => {
   const { userLoggedIn } = useAuth();
 
@@ -56,11 +59,19 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
-      <Route 
-        path="/classSchedule" 
+         <Route 
+        path="/ClassSchedule" 
         element={
           <ProtectedRoute isAuthenticated={userLoggedIn}>
             <ClassSchedule />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/Navbar" 
+        element={
+          <ProtectedRoute isAuthenticated={userLoggedIn}>
+            <Navbar />
           </ProtectedRoute>
         } 
       />
@@ -96,11 +107,22 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
-      <Route path="/" element={<AttendanceManagement />} />
+       
+       {/* Library Page Route */}
+      <Route 
+        path="/library" 
+        element={
+          <ProtectedRoute isAuthenticated={userLoggedIn}>
+            <LibraryPage />
+          </ProtectedRoute>
+        } 
+      />
+
+<Route path="/" element={<AttendanceManagement />} />
       <Route path="/attendance-record" element={<AttendanceRecord />} />
       <Route path="/attendance-calendar" element={<AttendanceCalendar />} />
       <Route path="/attendance-overview" element={<AttendanceOverview />} />
-    </Routes>
+     </Routes>
   );
 };
 

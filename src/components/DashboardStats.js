@@ -1,5 +1,6 @@
 // src/components/Dashboard.js
 import React from 'react';
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
     // Dummy data for announcements, activities, exams, and notifications
@@ -91,26 +92,26 @@ const Dashboard = () => {
 
             {/* Extra Feature - Quick Links */}
             <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-                <h2 className="text-2xl font-bold mb-4">Quick Links</h2>
-                <ul className="space-y-4">
-                    <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
-                        <span role="img" aria-label="link" className="text-green-500">📚</span>
-                        <a href="#" className="text-blue-500 hover:underline">Library Resources</a>
-                    </li>
-                    <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
-                        <span role="img" aria-label="link" className="text-yellow-500">📝</span>
-                        <a href="#" className="text-blue-500 hover:underline">Course Registration</a>
-                    </li>
-                    <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
-                        <span role="img" aria-label="link" className="text-red-500">📅</span>
-                        <a href="#" className="text-blue-500 hover:underline">Academic Calendar</a>
-                    </li>
-                    <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
-                        <span role="img" aria-label="link" className="text-purple-500">👥</span>
-                        <a href="#" className="text-blue-500 hover:underline">Student Support</a>
-                    </li>
-                </ul>
-            </div>
+      <h2 className="text-2xl font-bold mb-4">Quick Links</h2>
+      <ul className="space-y-4">
+        <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
+          <span role="img" aria-label="link" className="text-green-500">📚</span>
+          <Link to="/library" className="text-blue-500 hover:underline">Library Resources</Link>
+        </li>
+        <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
+          <span role="img" aria-label="link" className="text-yellow-500">📝</span>
+          <Link to="/register-courses" className="text-blue-500 hover:underline">Course Registration</Link>
+        </li>
+        <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
+          <span role="img" aria-label="link" className="text-red-500">📅</span>
+          <Link to="/classSchedule" className="text-blue-500 hover:underline">Academic Calendar</Link>
+        </li>
+        <li className="flex items-center space-x-4 hover:bg-gray-100 rounded-md px-2 transition-colors duration-200">
+          <span role="img" aria-label="link" className="text-purple-500">👥</span>
+          <Link to="/user-profile" className="text-blue-500 hover:underline">Student Support</Link>
+        </li>
+      </ul>
+    </div>
         </div>
     );
 };

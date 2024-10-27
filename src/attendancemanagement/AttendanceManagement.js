@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { useNavigate, Routes, Route } from 'react-router-dom';
- 
 import { Link } from 'react-router-dom';
+import AttendanceCalendar from './AttendanceCalendar';
+import AttendanceOverview from './AttendanceOverview'; // Assuming you have this component
+
 const AttendanceManagement = () => {
-  // Sample data generation function
-  const generateAttendanceData = () => [
+  // Sample attendance records
+  const attendanceRecords = [
     { id: 1, date: '2024-10-01', status: 'Present' },
     { id: 2, date: '2024-10-02', status: 'Absent' },
     { id: 3, date: '2024-10-03', status: 'Leave' },
     { id: 4, date: '2024-10-04', status: 'Present' },
-    // Add more sample data as needed
+    // Add more records as needed
   ];
 
-  const attendanceRecords = generateAttendanceData();
-  const [dateFilter, setDateFilter] = useState('');
-  
+  const [dateFilter, setDateFilter] = useState(new Date()); // Initialize with today's date
+
   // Calculate attendance summary for the pie chart
   const presentCount = attendanceRecords.filter(record => record.status === 'Present').length;
   const absentCount = attendanceRecords.filter(record => record.status === 'Absent').length;
@@ -33,13 +33,8 @@ const AttendanceManagement = () => {
     ],
   };
 
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-100 to-blue-300 p-6">
-       
-      {/* Navigation Links */}
-      <div className="min-h-screen bg-gradient-to-r from-blue-100 to-blue-300 p-6">
       <header className="text-center py-6 bg-blue-600 text-white rounded-lg mb-6 shadow-md">
         <h1 className="text-3xl font-bold">Attendance Management</h1>
       </header>
@@ -65,10 +60,21 @@ const AttendanceManagement = () => {
           Attendance Overview
         </Link>
       </nav>
-    </div>
 
-      {/* Routes */}
-      
+      {/* Pass the attendance records to the AttendanceCalendar component */}
+      <AttendanceCalendar
+        setDateFilter={setDateFilter}
+        dateFilter={dateFilter}
+        filteredRecords={attendanceRecords} // Pass the attendance records here
+      />
+
+      {/* You can also add AttendanceOverview here if needed */}
+      <AttendanceOverview
+        attendanceData={attendanceData}
+        presentCount={presentCount}
+        absentCount={absentCount}
+        leaveCount={leaveCount}
+      />
     </div>
   );
 };

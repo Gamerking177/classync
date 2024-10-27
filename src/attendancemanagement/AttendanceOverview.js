@@ -1,22 +1,24 @@
-import React from 'react';
-import { Pie } from 'react-chartjs-2';
+import React, { useEffect, useRef } from 'react';
+import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
 
-const AttendanceOverview = ({ attendanceData, presentCount, absentCount, leaveCount }) => {
+Chart.register(ArcElement, Tooltip, Legend);
+
+const AttendanceOverview = ({ attendanceData = { labels: [], datasets: [] } }) => {
+  const chartRef = useRef(null);
+
+  useEffect(() => {
+    if (chartRef.current) {
+      chartRef.current.update();
+    }
+  }, [attendanceData]);
+
   return (
-    <section className="bg-white shadow-md rounded-lg p-6">
+    <div>
       <h2 className="text-xl font-semibold mb-4">Attendance Overview</h2>
-      <div className="w-1/2 mx-auto">
-        <Pie data={attendanceData} />
-      </div>
-      <div className="text-lg mt-6 text-center">
-        <p><span className="font-medium">Total Days:</span> 90</p>
-        <p><span className="font-medium">Present:</span> {presentCount}</p>
-        <p><span className="font-medium">Absent:</span> {absentCount}</p>
-        <p><span className="font-medium">On Leave:</span> {leaveCount}</p>
-      </div>
-    </section>
+      <Doughnut ref={chartRef} data={attendanceData} />
+    </div>
   );
 };
 
 export default AttendanceOverview;
-    
