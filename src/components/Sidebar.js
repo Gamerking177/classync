@@ -1,100 +1,154 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faClipboardCheck, faGraduationCap, faWallet, faCalendarAlt, faBookOpen, faUser
+import {
+  faTachometerAlt,
+  faClipboardCheck,
+  faGraduationCap,
+  faWallet,
+  faCalendarAlt,
+  faBookOpen,
+  faUser,
+  faBars,
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../assets/logo/logo.png';
 import DefaultProfile from '../assets/default profile.png'; // Ensure the correct path to DefaultProfile image
-import { auth, db } from '../firebase/firebase';
-import { doc, getDoc } from 'firebase/firestore';
 
 const Sidebar = () => {
-  const [profileData, setProfileData] = useState({
+  // Static profile data
+  const profileData = {
     name: "Game Play",
     email: "gameplayapp007@gmail.com",
     profilePic: DefaultProfile
-  });
-
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      if (auth.currentUser) {
-        const userDocRef = doc(db, "users", auth.currentUser.uid);
-        const userDoc = await getDoc(userDocRef);
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          setProfileData({
-            name: userData.name || "User Name",
-            email: userData.email || "user@example.com",
-            profilePic: userData.profilePic || DefaultProfile
-          });
-        }
-      }
-    };
-    fetchProfileData();
-  }, []);
+  };
 
   return (
-    <div className="bg-white h-screen w-72 p-4 shadow-md relative">
-      <div className="flex items-center mb-8">
-        <img src={Logo} alt="Logo" className="rounded-full w-12 h-12 ml-2" />
-        <h3 className="ml-3 text-2xl font-semibold text-gray-800">ClassSync</h3>
+    <div>
+      {/* Logo and Toggle Button */}
+      <div className="flex items-center justify-between mb-8 p-4">
+        <img
+          src={Logo}
+          alt="Logo"
+          className="rounded-full w-8 h-8 ml-1"
+        />
+        <h3 className="ml-2 text-xl font-semibold text-gray-800">
+          ClassSync
+        </h3>
+        <button className="transition-transform duration-300">
+          <FontAwesomeIcon icon={faBars} className="text-gray-600" />
+        </button>
       </div>
 
+      {/* Navigation Links */}
       <nav>
         <ul>
           <li className="mb-4">
-            <NavLink to="/" className={({ isActive }) => `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`}>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `flex items-center px-4 ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+              }
+            >
               <FontAwesomeIcon icon={faTachometerAlt} className="mr-2" />
-              Dashboard
+              <span className="opacity-100">
+                Dashboard
+              </span>
             </NavLink>
           </li>
           <li className="mb-4">
-            <NavLink to="/attendance" className={({ isActive }) => `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`}>
+            <NavLink
+              to="/attendance"
+              className={({ isActive }) =>
+                `flex items-center px-4 ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+              }
+            >
               <FontAwesomeIcon icon={faClipboardCheck} className="mr-2" />
-              Attendance Management
+              <span className="opacity-100">
+                Attendance Management
+              </span>
             </NavLink>
           </li>
           <li className="mb-4">
-            <NavLink to="/marks&academic" className={({ isActive }) => `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`}>
+            <NavLink
+              to="/marks&academic"
+              className={({ isActive }) =>
+                `flex items-center px-4 ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+              }
+            >
               <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
-              Marks & Academic
+              <span className="opacity-100">
+                Marks & Academic
+              </span>
             </NavLink>
           </li>
           <li className="mb-4">
-            <NavLink to="/fees" className={({ isActive }) => `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`}>
+            <NavLink
+              to="/fees"
+              className={({ isActive }) =>
+                `flex items-center px-4 ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+              }
+            >
               <FontAwesomeIcon icon={faWallet} className="mr-2" />
-              Fees Management
+              <span className="opacity-100">
+                Fees Management
+              </span>
             </NavLink>
           </li>
           <li className="mb-4">
-            <NavLink to="/ScheduleDashboard" className={({ isActive }) => `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`}>
+            <NavLink
+              to="/ScheduleDashboard"
+              className={({ isActive }) =>
+                `flex items-center px-4 ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+              }
+            >
               <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
-              Schedules
+              <span className="opacity-100">
+                Schedules
+              </span>
             </NavLink>
           </li>
           <li className="mb-4">
-            <NavLink to="/register-courses" className={({ isActive }) => `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`}>
+            <NavLink
+              to="/register-courses"
+              className={({ isActive }) =>
+                `flex items-center px-4 ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+              }
+            >
               <FontAwesomeIcon icon={faBookOpen} className="mr-2" />
-              Course Registration
+              <span className="opacity-100">
+                Course Registration
+              </span>
             </NavLink>
           </li>
           <li className="mb-4">
-            <NavLink to="/user-profile" className={({ isActive }) => `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`}>
+            <NavLink
+              to="/user-profile"
+              className={({ isActive }) =>
+                `flex items-center px-4 ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+              }
+            >
               <FontAwesomeIcon icon={faUser} className="mr-2" />
-              User Profile
+              <span className="opacity-100">
+                User Profile
+              </span>
             </NavLink>
           </li>
         </ul>
       </nav>
 
-      {/* Profile Footer Section */}
+      {/* Profile Footer Section (Static) */}
       <div className="absolute bottom-4 left-4 flex items-center">
-        <div className="w-16 h-16 p-1 rounded-full bg-gray-200 flex items-center justify-center">
-          <img src={profileData.profilePic} alt="Profile" className="rounded-full object-cover w-full h-full" />
+        <div className="w-12 h-12 p-1 rounded-full bg-gray-200 flex items-center justify-center">
+          <img
+            src={profileData.profilePic}
+            alt="Profile"
+            className="rounded-full object-cover w-full h-full"
+          />
         </div>
-        <div className="ml-2 max-w-[200px]">
+        <div className="ml-2 max-w-[200px]"> {/* Static profile details */}
           <p className="font-bold">{profileData.name}</p>
-          <p className="text-gray-600 text-sm break-words">{profileData.email}</p>
+          <p className="text-gray-600 text-sm">{profileData.email}</p>
         </div>
       </div>
     </div>
