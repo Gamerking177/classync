@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faClipboardCheck, faGraduationCap, faWallet, faCalendarAlt, faBookOpen, faUser } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../assets/logo/logo.png';
-
 const Sidebar = () => (
     <div className="bg-white h-screen w-64 p-4 shadow-md relative">
         <div className="flex items-center mb-8">

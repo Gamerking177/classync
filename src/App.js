@@ -2,11 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/DashboardStats';
- 
-  
 import AcademicPerformance from './components/marks&academic';
 import AttendanceManagement from './pages/AttendanceManagement'
-import ExamAssignmentSchedule from './components/ExamAssignmentSchedule';
 import ClassSchedule from './components/ClassSchedule';
 import FeesManagement from './pages/FeesManagement';
 import CourseRegistration from './pages/CourseRegistration';
