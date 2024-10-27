@@ -14,7 +14,10 @@ const UserProfile = () => {
             { semester: "1st", GPA: 3.8 },
             { semester: "2nd", GPA: 3.9 },
             { semester: "3rd", GPA: 4.0 }
-        ]
+        ],
+        parentName: "Mr. and Mrs. Doe",
+        parentPhone: "987-654-3210",
+        parentWhatsApp: "9123456789"
     });
 
     const handleEditToggle = () => setEditable(!editable);
@@ -36,6 +39,8 @@ const UserProfile = () => {
     return (
         <div className="p-6 bg-gradient-to-r from-blue-100 to-purple-100 min-h-screen">
             <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">User Profile</h1>
+            
+            {/* Personal Information */}
             <div className="bg-white p-8 rounded-2xl shadow-lg mb-8 transition-all duration-300 hover:shadow-xl">
                 <h2 className="text-3xl font-bold mb-6 text-gray-700">Personal Information</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -103,8 +108,42 @@ const UserProfile = () => {
                 </button>
             </div>
 
+            {/* Parent Information (Non-Editable) */}
+            <div className="bg-white p-8 rounded-2xl shadow-lg mb-8 transition-all duration-300 hover:shadow-xl">
+                <h2 className="text-3xl font-bold mb-6 text-gray-700">Parent Information</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label className="block font-medium text-gray-600 mb-2">Parent's Name:</label>
+                        <input
+                            type="text"
+                            value={profile.parentName}
+                            readOnly
+                            className="w-full p-3 border rounded-lg shadow-sm mt-1 bg-gray-100 cursor-not-allowed"
+                        />
+                    </div>
+                    <div>
+                        <label className="block font-medium text-gray-600 mb-2">Parent's Phone:</label>
+                        <input
+                            type="text"
+                            value={profile.parentPhone}
+                            readOnly
+                            className="w-full p-3 border rounded-lg shadow-sm mt-1 bg-gray-100 cursor-not-allowed"
+                        />
+                    </div>
+                    <div className="md:col-span-2">
+                        <label className="block font-medium text-gray-600 mb-2">Parent's WhatsApp:</label>
+                        <input
+                            type="text"
+                            value={profile.parentWhatsApp}
+                            readOnly
+                            className="w-full p-3 border rounded-lg shadow-sm mt-1 bg-gray-100 cursor-not-allowed"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            {/* Academic Performance Graph */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Academic Performance Graph */}
                 <div className="bg-white p-6 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl">
                     <h2 className="text-2xl font-bold mb-6 text-gray-700">Academic Performance</h2>
                     <LineChart width={400} height={300} data={profile.academicHistory}>
@@ -137,25 +176,6 @@ const UserProfile = () => {
                         <Tooltip />
                         <Legend />
                     </PieChart>
-                </div>
-            </div>
-
-            {/* User Stats */}
-            <div className="bg-white p-8 mt-8 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl">
-                <h2 className="text-3xl font-bold mb-6 text-gray-700">User Statistics</h2>
-                <div className="flex flex-wrap justify-around">
-                    <div className="text-center p-4 bg-blue-100 rounded-xl transition-all duration-300 hover:bg-blue-200">
-                        <p className="text-xl font-medium text-blue-800">Total Credits</p>
-                        <p className="text-3xl font-bold text-blue-600">28</p>
-                    </div>
-                    <div className="text-center p-4 bg-green-100 rounded-xl transition-all duration-300 hover:bg-green-200">
-                        <p className="text-xl font-medium text-green-800">Attendance</p>
-                        <p className="text-3xl font-bold text-green-600">85%</p>
-                    </div>
-                    <div className="text-center p-4 bg-purple-100 rounded-xl transition-all duration-300 hover:bg-purple-200">
-                        <p className="text-xl font-medium text-purple-800">Total Semesters</p>
-                        <p className="text-3xl font-bold text-purple-600">3</p>
-                    </div>
                 </div>
             </div>
         </div>
