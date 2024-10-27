@@ -3,8 +3,10 @@ import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faClipboardCheck, faGraduationCap, faWallet, faCalendarAlt, faBookOpen, faUser } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../assets/logo/logo.png';
+import DefaultProfile from '../assets/default profile.png'
+
 const Sidebar = () => (
-    <div className="bg-white h-screen w-64 p-4 shadow-md relative">
+    <div className="bg-white h-screen w-72 p-4 shadow-md relative">
         <div className="flex items-center mb-8">
             <img
                 src={Logo}
@@ -17,9 +19,9 @@ const Sidebar = () => (
         <nav>
             <ul>
                 <li className="mb-4">
-                    <NavLink 
-                        to="/" 
-                        className={({ isActive }) => 
+                    <NavLink
+                        to="/"
+                        className={({ isActive }) =>
                             `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
                         }
                     >
@@ -28,9 +30,9 @@ const Sidebar = () => (
                     </NavLink>
                 </li>
                 <li className="mb-4">
-                    <NavLink 
-                        to="/attendance" 
-                        className={({ isActive }) => 
+                    <NavLink
+                        to="/attendance"
+                        className={({ isActive }) =>
                             `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
                         }
                     >
@@ -39,9 +41,9 @@ const Sidebar = () => (
                     </NavLink>
                 </li>
                 <li className="mb-4">
-                    <NavLink 
-                        to="/marks&academic" 
-                        className={({ isActive }) => 
+                    <NavLink
+                        to="/marks&academic"
+                        className={({ isActive }) =>
                             `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
                         }
                     >
@@ -50,9 +52,9 @@ const Sidebar = () => (
                     </NavLink>
                 </li>
                 <li className="mb-4">
-                    <NavLink 
-                        to="/fees" 
-                        className={({ isActive }) => 
+                    <NavLink
+                        to="/fees"
+                        className={({ isActive }) =>
                             `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
                         }
                     >
@@ -64,9 +66,9 @@ const Sidebar = () => (
 
 
                 <li className="mb-4">
-                    <NavLink 
-                        to="/Navbar" 
-                        className={({ isActive }) => 
+                    <NavLink
+                        to="/Navbar"
+                        className={({ isActive }) =>
                             `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
                         }
                     >
@@ -78,9 +80,9 @@ const Sidebar = () => (
 
 
                 <li className="mb-4">
-                    <NavLink 
-                        to="/register-courses" 
-                        className={({ isActive }) => 
+                    <NavLink
+                        to="/register-courses"
+                        className={({ isActive }) =>
                             `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
                         }
                     >
@@ -89,9 +91,9 @@ const Sidebar = () => (
                     </NavLink>
                 </li>
                 <li className="mb-4">
-                    <NavLink 
-                        to="/user-profile" 
-                        className={({ isActive }) => 
+                    <NavLink
+                        to="/user-profile"
+                        className={({ isActive }) =>
                             `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
                         }
                     >
@@ -104,13 +106,22 @@ const Sidebar = () => (
 
         {/* Profile Footer Section */}
         <div className="absolute bottom-4 left-4 flex items-center">
-            <div className="bg-green-500 p-2 rounded-full">
-                <span className="text-white text-xl">G</span>
+            <div className="absolute bottom-4 flex items-center">
+                <div className="w-16 h-16 p-1 rounded-full bg-gray-200 flex items-center justify-center">
+                    <img
+                        src={DefaultProfile}
+                        alt="Profile"
+                        className="rounded-full object-cover w-full h-full"
+                    />
+                </div>
+                <div className="ml-2 max-w-[200px]">
+                    <p className="font-bold">Game Play</p>
+                    <p className="text-gray-600 text-sm break-words">
+                        gameplayapp007@gmail.com
+                    </p>
+                </div>
             </div>
-            <div className="ml-2">
-                <p className="font-bold">Game Play</p>
-                <p className="text-gray-600 text-sm">gameplayapp007@gmail.com</p>
-            </div>
+
         </div>
     </div>
 );
