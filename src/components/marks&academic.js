@@ -18,7 +18,16 @@ function AcademicPerformance() {
       { name: 'Database Systems', assignments: 28, midterm: 37, final: 33, total: 98 },
       { name: 'Web Development', assignments: 27, midterm: 35, final: 30, total: 92 },
     ],
-    // Add data for other semesters
+    'Semester 3': [
+      { name: 'Operating Systems', assignments: 30, midterm: 37, final: 32, total: 99 },
+      { name: 'Software Engineering', assignments: 29, midterm: 40, final: 30, total: 99 },
+      { name: 'Computer Networks', assignments: 26, midterm: 35, final: 31, total: 92 },
+    ],
+    'Semester 4': [
+      { name: 'Artificial Intelligence', assignments: 28, midterm: 38, final: 29, total: 95 },
+      { name: 'Machine Learning', assignments: 30, midterm: 39, final: 30, total: 99 },
+      { name: 'Mobile App Development', assignments: 27, midterm: 37, final: 32, total: 96 },
+    ],
   };
 
   const performanceTrend = [

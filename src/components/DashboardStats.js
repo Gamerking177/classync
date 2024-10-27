@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
+
     const announcements = [
         { id: 1, title: "Library Week", content: "Library week starts from Nov 1st to Nov 7th. All students are welcome!" },
         { id: 2, title: "Winter Vacation", content: "College will remain closed from Dec 25th to Jan 5th for winter break." },
@@ -27,12 +28,14 @@ const Dashboard = () => {
     ];
 
     return (
-        <div className="p-6 min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100">
+        <div className="p-6 min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100 relative">
+
             <h1 className="text-3xl font-semibold mb-6 text-indigo-700">Dashboard Overview</h1>
 
-            {/* Announcements Section */}
+            {/* Announcements and Activities Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border-t-4 border-indigo-500">
+                {/* Announcements */}
+                <div className="bg-white p-6 rounded-lg shadow-lg transition-shadow duration-300 border-t-4 border-indigo-500">
                     <h2 className="text-2xl font-semibold text-indigo-600 mb-4">Student Announcements</h2>
                     <ul className="space-y-4 text-gray-700">
                         {announcements.map((announcement) => (
@@ -44,8 +47,8 @@ const Dashboard = () => {
                     </ul>
                 </div>
 
-                {/* Recent Activities Section */}
-                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border-t-4 border-blue-500">
+                {/* Recent Activities */}
+                <div className="bg-white p-6 rounded-lg shadow-lg transition-shadow duration-300 border-t-4 border-blue-500">
                     <h2 className="text-2xl font-semibold text-blue-600 mb-4">Recent Activities</h2>
                     <ul className="space-y-4 text-gray-700">
                         {recentActivities.map((activity) => (
@@ -58,8 +61,8 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            {/* Upcoming Exams Section */}
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out mb-6 border-t-4 border-green-500">
+            {/* Upcoming Exams */}
+            <div className="bg-white p-6 rounded-lg shadow-lg transition-shadow duration-300 mb-6 border-t-4 border-green-500">
                 <h2 className="text-2xl font-semibold text-green-600 mb-4">Upcoming Exams</h2>
                 <ul className="space-y-4 text-gray-700">
                     {upcomingExams.map((exam) => (
@@ -74,8 +77,8 @@ const Dashboard = () => {
                 </ul>
             </div>
 
-            {/* Notifications Section */}
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out mb-6 border-t-4 border-yellow-500">
+            {/* Notifications */}
+            <div className="bg-white p-6 rounded-lg shadow-lg transition-shadow duration-300 mb-6 border-t-4 border-yellow-500">
                 <h2 className="text-2xl font-semibold text-yellow-600 mb-4">Important Notifications</h2>
                 <ul className="space-y-4 text-gray-700">
                     {notifications.map((notification) => (
@@ -89,8 +92,8 @@ const Dashboard = () => {
                 </ul>
             </div>
 
-            {/* Quick Links Section */}
-            <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out border-t-4 border-purple-500">
+            {/* Quick Links */}
+            <div className="bg-white p-6 rounded-lg shadow-lg transition-shadow duration-300 border-t-4 border-purple-500">
                 <h2 className="text-2xl font-semibold text-purple-600 mb-4">Quick Links</h2>
                 <ul className="space-y-4 text-gray-700">
                     <li className="flex items-center space-x-4 hover:bg-purple-50 rounded-md px-2 transition-colors duration-200">
