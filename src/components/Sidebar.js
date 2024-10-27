@@ -1,7 +1,5 @@
-// Sidebar.js
-
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTachometerAlt, faClipboardCheck, faGraduationCap, faWallet, faCalendarAlt, faBookOpen, faUser } from '@fortawesome/free-solid-svg-icons';
 import Logo from '../assets/logo/logo.png';
@@ -19,46 +17,87 @@ const Sidebar = () => (
         <nav>
             <ul>
                 <li className="mb-4">
-                    <Link to="/" className="flex items-center text-blue-500">
+                    <NavLink 
+                        to="/" 
+                        className={({ isActive }) => 
+                            `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+                        }
+                    >
                         <FontAwesomeIcon icon={faTachometerAlt} className="mr-2" />
                         Dashboard
-                    </Link>
+                    </NavLink>
                 </li>
                 <li className="mb-4">
-                    <Link to="/attendance" className="flex items-center text-gray-600">
+                    <NavLink 
+                        to="/attendance" 
+                        className={({ isActive }) => 
+                            `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+                        }
+                    >
                         <FontAwesomeIcon icon={faClipboardCheck} className="mr-2" />
                         Attendance Management
-                    </Link>
+                    </NavLink>
                 </li>
                 <li className="mb-4">
-                    <Link to="/marks&academic" className="flex items-center text-gray-600">
+                    <NavLink 
+                        to="/marks&academic" 
+                        className={({ isActive }) => 
+                            `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+                        }
+                    >
                         <FontAwesomeIcon icon={faGraduationCap} className="mr-2" />
                         Marks & Academic
-                    </Link>
+                    </NavLink>
                 </li>
                 <li className="mb-4">
-                    <Link to="/fees" className="flex items-center text-gray-600">
+                    <NavLink 
+                        to="/fees" 
+                        className={({ isActive }) => 
+                            `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+                        }
+                    >
                         <FontAwesomeIcon icon={faWallet} className="mr-2" />
                         Fees Management
-                    </Link>
+                    </NavLink>
                 </li>
+
+
+
                 <li className="mb-4">
-                    <Link to="/schedules" className="flex items-center text-gray-600">
+                    <NavLink 
+                        to="/Navbar" 
+                        className={({ isActive }) => 
+                            `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+                        }
+                    >
                         <FontAwesomeIcon icon={faCalendarAlt} className="mr-2" />
                         Schedules
-                    </Link>
+                    </NavLink>
                 </li>
+
+
+
                 <li className="mb-4">
-                    <Link to="/register-courses" className="flex items-center text-gray-600">
+                    <NavLink 
+                        to="/register-courses" 
+                        className={({ isActive }) => 
+                            `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+                        }
+                    >
                         <FontAwesomeIcon icon={faBookOpen} className="mr-2" />
                         Course Registration
-                    </Link>
+                    </NavLink>
                 </li>
                 <li className="mb-4">
-                    <Link to="/user-profile" className="flex items-center text-gray-600">
+                    <NavLink 
+                        to="/user-profile" 
+                        className={({ isActive }) => 
+                            `flex items-center ${isActive ? 'text-blue-500' : 'text-gray-600'}`
+                        }
+                    >
                         <FontAwesomeIcon icon={faUser} className="mr-2" />
                         User Profile
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </nav>

@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/DashboardStats';
 import AcademicPerformance from './components/marks&academic';
+ import Navbar from './components/Navbar';
+ import AcademicPerformance from './components/marks&academic';
 import AttendanceManagement from './pages/AttendanceManagement'
 import ClassSchedule from './components/ClassSchedule';
 import FeesManagement from './pages/FeesManagement';
@@ -49,16 +51,24 @@ const App = () => {
                 </ProtectedRoute>
               } 
             />
-            <Route 
-              path="/schedules" 
+              <Route 
+              path="/ExamAssignmentSchedule" 
               element={
                 <ProtectedRoute isAuthenticated={userLoggedIn}>
-                  <ExamAssignmentSchedule />
+                  <AttendanceManagement />
                 </ProtectedRoute>
               } 
             />
             <Route 
-              path="/class-schedule" 
+              path="/Navbar" 
+              element={
+                <ProtectedRoute isAuthenticated={userLoggedIn}>
+                  <Navbar/>
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/classSchedule" 
               element={
                 <ProtectedRoute isAuthenticated={userLoggedIn}>
                   <ClassSchedule />
