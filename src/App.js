@@ -3,11 +3,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import AppRoutes from './routes/AppRoutes'; 
 import { useAuth } from './context/authContext/authContext';
-
+import NewsletterModal from './Newslettermodal';
 const App = () => {
   const { userLoggedIn } = useAuth();
 
   return (
+    <>
+    <NewsletterModal/>
     <Router>
       <div className="flex">
         {userLoggedIn && <Sidebar />} {/* Show Sidebar if authenticated */}
@@ -16,6 +18,8 @@ const App = () => {
         </div>
       </div>
     </Router>
+    
+    </>
   );
 };
 
