@@ -57,7 +57,7 @@ function AcademicPerformance() {
         >
           <h2 className="text-xl font-semibold mb-4">Student Information</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <p><span className="font-medium">Name:</span> John Doe</p>
+            <p><span className="font-medium">Name:</span> Rahul</p>
             <p><span className="font-medium">Student ID:</span> 123456</p>
             <p><span className="font-medium">Class:</span> BCA 3rd Year</p>
             <p><span className="font-medium">Roll No:</span> 10023</p>

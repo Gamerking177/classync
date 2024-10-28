@@ -74,12 +74,12 @@ const CourseRegistration = () => {
                     onChange={handleFacultyChange}
                 >
                     <option value="">All Faculty</option>
-                    <option value="Dr. Smith">Dr. Smith</option>
-                    <option value="Dr. Clark">Dr. Clark</option>
-                    <option value="Prof. Johnson">Prof. Johnson</option>
-                    <option value="Dr. Lee">Dr. Lee</option>
-                    <option value="Dr. Brown">Dr. Brown</option>
-                    <option value="Prof. Williams">Prof. Williams</option>
+                    <option value="Dr. Smith">Dr. vivekanand</option>
+                    <option value="Dr. Clark">Dr. subash</option>
+                    <option value="Prof. Johnson">Prof. neeraj</option>
+                    <option value="Dr. Lee">Dr. manlj</option>
+                    <option value="Dr. Brown">Dr. sumita</option>
+                    <option value="Prof. Williams">Prof. Deepak</option>
                 </select>
                 <select
                     className="p-2 border rounded-lg shadow-sm w-full md:w-1/3 transition duration-200 ease-in-out hover:shadow-lg"
