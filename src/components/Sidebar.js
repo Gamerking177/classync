@@ -30,22 +30,13 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="relative">
-      {/* Hamburger Button for mobile view */}
-      <button
-        onClick={toggleSidebar}
-        className="fixed top-4 right-4 z-20 text-gray-600 lg:hidden"
-      >
-        <FontAwesomeIcon icon={isOpen ? faTimes : faBars} size="2x" />
-      </button>
-
+    <div className="h-screen flex overflow-hidden">
       {/* Sidebar */}
-      <div className={`fixed top-0 left-0 h-full bg-white shadow-lg p-4 z-10 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static lg:w-64`}>
+      <div className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg p-4 z-10 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
         {/* Logo for sidebar */}
         <div className="flex items-center justify-between mb-8">
           <img src={Logo} alt="Logo" className="rounded-full w-8 h-8 ml-1" />
           <h3 className="ml-2 text-xl font-semibold text-gray-800">ClassSync</h3>
-          {/* Removed the close button here */}
         </div>
 
         {/* Navigation Links */}
@@ -131,7 +122,7 @@ const Sidebar = () => {
           </ul>
         </nav>
 
-        {/* Profile Footer Section (Static) */}
+        {/* Profile Footer Section */}
         <div className="absolute bottom-4 left-4 flex items-center">
           <div className="w-12 h-12 p-1 rounded-full bg-gray-200 flex items-center justify-center">
             <img
@@ -154,6 +145,19 @@ const Sidebar = () => {
           className="fixed inset-0 bg-black opacity-50 lg:hidden"
         />
       )}
+
+      {/* Main Content Area */}
+      <div className="flex-1 lg:ml-64 p-4 overflow-auto">
+        {/* Place your main content here */}
+      </div>
+      
+      {/* Hamburger Button for mobile view */}
+      <button
+        onClick={toggleSidebar}
+        className="fixed top-4 left-4 z-20 text-gray-600 lg:hidden"
+      >
+        <FontAwesomeIcon icon={isOpen ? faTimes : faBars} size="2x" />
+      </button>
     </div>
   );
 };
