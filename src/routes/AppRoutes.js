@@ -16,6 +16,7 @@ import AttendanceRecord from '../attendancemanagement/AttendanceRecord';
 import AttendanceOverview from '../attendancemanagement/AttendanceOverview';
 import AttendanceCalendar from '../attendancemanagement/AttendanceCalendar';
 import LibraryPage from '../library/LibraryPage';
+import StudentSupport from '../pages/StudentSupport'
 import ScheduleDashboard from '../components/ScheduleDashboard';
 
 const AppRoutes = () => {
@@ -118,6 +119,15 @@ const AppRoutes = () => {
           </ProtectedRoute>
         } 
       />
+      <Route 
+        path="/student-support"
+        element={
+          <ProtectedRoute isAuthenticated={userLoggedIn}>
+            <StudentSupport/>
+          </ProtectedRoute>
+        } 
+      />
+
 
       {/* Additional Attendance Routes */}
       <Route path="/attendance-record" element={<AttendanceRecord />} />
