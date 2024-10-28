@@ -41,16 +41,11 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div className={`fixed top-0 left-0 h-full bg-white shadow-lg p-4 z-10 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 lg:static lg:w-64`}>
-        {/* Logo and Close Button for mobile view */}
+        {/* Logo for sidebar */}
         <div className="flex items-center justify-between mb-8">
           <img src={Logo} alt="Logo" className="rounded-full w-8 h-8 ml-1" />
           <h3 className="ml-2 text-xl font-semibold text-gray-800">ClassSync</h3>
-          <button
-            onClick={toggleSidebar}
-            className="text-gray-600 lg:hidden"
-          >
-            <FontAwesomeIcon icon={faTimes} />
-          </button>
+          {/* Removed the close button here */}
         </div>
 
         {/* Navigation Links */}
