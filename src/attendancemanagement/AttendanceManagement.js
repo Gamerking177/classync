@@ -57,8 +57,8 @@ const AttendanceManagement = () => {
       </motion.header>
 
       {/* Navigation Links */}
-      <nav className="flex flex-col md:flex-row justify-center gap-2 md:gap-4 mb-4 md:mb-6">
-        {['/attendance-record', '/attendance-calendar', '/attendance-overview'].map((link, index) => (
+      <nav className="flex flex-col md:flex-row justify-center gap-3 md:gap-4 mb-4 md:mb-6">
+        {['/attendance-record', '/attendance-calendar' ].map((link, index) => (
           <MotionLink
             to={link}
             key={index}
