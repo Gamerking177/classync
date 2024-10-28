@@ -11,7 +11,6 @@ const FeesManagement = () => {
     const [filterText, setFilterText] = useState("");
     const [showHistory, setShowHistory] = useState(false);
 
-    // Dummy data for fee structure and payments
     const feesData = {
         "1st": { tuition: 15000, hostel: 5000, library: 1000, lab: 2000, misc: 500, deadline: "31 March 2024", pending: 2000, fine: 200 },
         "2nd": { tuition: 15000, hostel: 5000, library: 1000, lab: 2000, misc: 700, deadline: "30 June 2024", pending: 1500, fine: 100 },
@@ -55,11 +54,11 @@ const FeesManagement = () => {
         >
             {/* Main Content */}
             <div className="w-full lg:w-2/3 pr-0 lg:pr-8 mb-6 lg:mb-0">
-                <h1 className="text-4xl font-bold mb-6 text-center">Fees Management</h1>
+                <h1 className="text-3xl lg:text-4xl font-bold mb-6 text-center">Fees Management</h1>
 
                 {/* Semester Filter and Search */}
                 <div className="mb-6 flex flex-col lg:flex-row justify-between items-center">
-                    <div className="w-full lg:w-auto">
+                    <div className="w-full lg:w-auto mb-4 lg:mb-0">
                         <label className="block text-lg font-medium mb-2">Select Semester:</label>
                         <select 
                             onChange={handleSemesterChange} 
@@ -72,7 +71,6 @@ const FeesManagement = () => {
                             <option value="4th">4th Semester</option>
                         </select>
                     </div>
-                    {/* Search Filter */}
                     <div className="mt-4 lg:mt-0 lg:ml-4 flex items-center">
                         <FaSearch className="text-white mr-2"/>
                         <input 
@@ -92,7 +90,7 @@ const FeesManagement = () => {
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="bg-white text-gray-800 p-6 rounded-lg shadow-lg mb-6 border"
                 >
-                    <h2 className="text-3xl font-semibold mb-4">Fee Structure for {selectedSemester} Semester</h2>
+                    <h2 className="text-2xl lg:text-3xl font-semibold mb-4">Fee Structure for {selectedSemester} Semester</h2>
                     <ul className="space-y-4">
                         <li className="flex justify-between">
                             <span className="font-medium">Tuition Fee:</span>
@@ -131,23 +129,23 @@ const FeesManagement = () => {
                     transition={{ duration: 0.5, delay: 0.4 }}
                     className="bg-white text-gray-800 p-6 rounded-lg shadow-lg border"
                 >
-                    <h2 className="text-3xl font-semibold mb-4">Make a Payment</h2>
+                    <h2 className="text-2xl lg:text-3xl font-semibold mb-4">Make a Payment</h2>
                     <form className="space-y-6">
                         <div className="flex justify-between items-center">
                             <span className="font-medium">Amount to Pay:</span>
                             <span>₹{semesterFees.pending + semesterFees.fine}</span>
                         </div>
 
-                        <div className="flex justify-around mt-4">
-                            <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:from-blue-600 flex items-center space-x-2">
+                        <div className="flex justify-between flex-wrap mt-4">
+                            <button className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:from-blue-600 mx-1 flex items-center space-x-2">
                                 <FaCreditCard />
                                 <span>Credit/Debit Card</span>
                             </button>
-                            <button className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full shadow-lg hover:from-green-600 flex items-center space-x-2">
+                            <button className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-full shadow-lg hover:from-green-600 mx-1 flex items-center space-x-2">
                                 <FaMobileAlt />
                                 <span>UPI</span>
                             </button>
-                            <button className="bg-gradient-to-r from-purple-500 to-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:from-blue-600 flex items-center space-x-2">
+                            <button className="flex-1 bg-gradient-to-r from-purple-500 to-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:from-blue-600 mx-1 flex items-center space-x-2">
                                 <FaUniversity />
                                 <span>Net Banking</span>
                             </button>
@@ -155,66 +153,62 @@ const FeesManagement = () => {
 
                         <button 
                             type="button" 
-                            onClick={handlePayment}
-                            className={`w-full bg-blue-600 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-200 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                            disabled={isLoading}
+                            onClick={handlePayment} 
+                            disabled={isLoading} 
+                            className={`w-full bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
                         >
                             {isLoading ? 'Processing...' : 'Pay Now'}
                         </button>
                     </form>
+                    {notification && <div className="mt-4 text-green-600">{notification}</div>}
                 </motion.div>
             </div>
 
-            {/* Sidebar Section */}
-            <div className="w-full lg:w-1/3 mt-6 lg:mt-0 flex flex-col">
-                {notification && (
-                    <div className="bg-green-200 text-green-800 p-4 rounded-lg shadow-lg mb-6">
-                        {notification}
-                    </div>
-                )}
-
-                <motion.div
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.8 }}
-                    className="bg-white text-gray-800 p-6 rounded-lg shadow-lg border mb-6"
-                >
-                    <h2 className="text-3xl font-semibold mb-4">Previous Payments</h2>
+            {/* Payment History */}
+            <div className="w-full lg:w-1/3 lg:pl-8">
+                <h2 className="text-2xl lg:text-3xl font-semibold mb-4">Payment History</h2>
+                <div className="bg-white text-gray-800 p-6 rounded-lg shadow-lg border">
+                    <h3 className="font-medium mb-4">Previous Payments</h3>
+                    <input 
+                        type="text" 
+                        placeholder="Search payments..." 
+                        value={filterText} 
+                        onChange={(e) => setFilterText(e.target.value)}
+                        className="p-2 rounded-lg text-gray-800 mb-4 w-full"
+                    />
                     <ul className="space-y-4">
                         {filteredPayments.length > 0 ? (
                             filteredPayments.map((payment, index) => (
                                 <li key={index} className="flex justify-between">
-                                    <span className="font-medium">{payment.semester} Semester:</span>
-                                    <span>₹{payment.amount} - {payment.date}</span>
+                                    <span>{payment.semester}</span>
+                                    <span>₹{payment.amount} ({payment.date})</span>
                                 </li>
                             ))
                         ) : (
-                            <li className="text-gray-500">No payments found.</li>
+                            <li>No payments found.</li>
                         )}
                     </ul>
-                </motion.div>
+                </div>
+            </div>
 
-                {/* Support Section */}
-                <motion.div
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 1 }}
-                    className="bg-white text-gray-800 p-6 rounded-lg shadow-lg border"
-                >
-                    <h2 className="text-3xl font-semibold mb-4">Need Help?</h2>
+            {/* Support Ticket */}
+            <div className="w-full lg:w-1/3 lg:pl-8 mt-6 lg:mt-0">
+                <h2 className="text-2xl lg:text-3xl font-semibold mb-4">Support</h2>
+                <div className="bg-white text-gray-800 p-6 rounded-lg shadow-lg border">
+                    <h3 className="font-medium mb-4">Submit a Support Ticket</h3>
                     <textarea 
+                        placeholder="Describe your issue..." 
                         value={supportTicket} 
                         onChange={(e) => setSupportTicket(e.target.value)} 
-                        placeholder="Describe your issue here..." 
-                        className="w-full p-4 border rounded-lg"
-                    ></textarea>
+                        className="p-2 rounded-lg text-gray-800 mb-4 w-full h-24"
+                    />
                     <button 
                         onClick={handleSupportTicket} 
-                        className="mt-4 w-full bg-red-600 text-white px-6 py-2 rounded-lg shadow-lg hover:bg-red-700 transition-all duration-200"
+                        className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 w-full"
                     >
-                        Submit Support Ticket
+                        Submit Ticket
                     </button>
-                </motion.div>
+                </div>
             </div>
         </motion.div>
     );
