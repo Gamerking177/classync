@@ -31,15 +31,11 @@ Follow these steps to set up the project locally:
 
 1. Clone the Repository
 ```
-bash
-Copy code
 git clone https://github.com/ketanop321/classsync.git
 cd classsync
 ```
 2. Install Dependencies
 ```
-bash
-Copy code
 npm install
 ```
 3. Configure Firebase
@@ -47,8 +43,6 @@ npm install
 - Create a Firebase project at Firebase Console.
 - Obtain your Firebase credentials and set up .env variables.
 ```
-bash
-Copy code
 REACT_APP_FIREBASE_API_KEY=your_api_key
 REACT_APP_FIREBASE_AUTH_DOMAIN=your_auth_domain
 REACT_APP_FIREBASE_PROJECT_ID=your_project_id
@@ -58,8 +52,6 @@ REACT_APP_FIREBASE_APP_ID=your_app_id
 ```
 4. Start the Development Server
 ```
-bash
-Copy code
 npm start
 ```
 ## Access the app at http://localhost:3000.
