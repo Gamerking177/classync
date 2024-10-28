@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { motion } from 'framer-motion';
 
 function AcademicPerformance() {
@@ -38,25 +38,25 @@ function AcademicPerformance() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 p-4 md:p-6">
       <motion.header
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-center py-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg mb-6 shadow-lg"
+        className="text-center py-4 md:py-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg mb-6 shadow-lg"
       >
-        <h1 className="text-3xl font-bold">Marks & Academic Performance</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">Marks & Academic Performance</h1>
       </motion.header>
 
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-4xl lg:max-w-6xl mx-auto">
         <motion.section
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="bg-white shadow-md rounded-lg p-6 mb-6"
+          className="bg-white shadow-md rounded-lg p-4 md:p-6 mb-6"
         >
-          <h2 className="text-xl font-semibold mb-4">Student Information</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <h2 className="text-lg md:text-xl font-semibold mb-4">Student Information</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm md:text-base">
             <p><span className="font-medium">Name:</span> Rahul</p>
             <p><span className="font-medium">Student ID:</span> 123456</p>
             <p><span className="font-medium">Class:</span> BCA 3rd Year</p>
@@ -68,9 +68,9 @@ function AcademicPerformance() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white shadow-md rounded-lg p-6 mb-6"
+          className="bg-white shadow-md rounded-lg p-4 md:p-6 mb-6"
         >
-          <h2 className="text-xl font-semibold mb-4">Subject Marks</h2>
+          <h2 className="text-lg md:text-xl font-semibold mb-4">Subject Marks</h2>
           <div className="mb-4">
             <label htmlFor="semester" className="mr-2">Select Semester:</label>
             <select
@@ -85,14 +85,14 @@ function AcademicPerformance() {
             </select>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
+            <table className="w-full text-left border-collapse text-sm md:text-base">
               <thead>
                 <tr className="bg-blue-200">
-                  <th className="p-3 border">Subject</th>
-                  <th className="p-3 border">Assignments (30)</th>
-                  <th className="p-3 border">Midterm (40)</th>
-                  <th className="p-3 border">Final (30)</th>
-                  <th className="p-3 border">Total (100)</th>
+                  <th className="p-2 md:p-3 border">Subject</th>
+                  <th className="p-2 md:p-3 border">Assignments (30)</th>
+                  <th className="p-2 md:p-3 border">Midterm (40)</th>
+                  <th className="p-2 md:p-3 border">Final (30)</th>
+                  <th className="p-2 md:p-3 border">Total (100)</th>
                 </tr>
               </thead>
               <tbody>
@@ -103,11 +103,11 @@ function AcademicPerformance() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                   >
-                    <td className="p-3 border">{subject.name}</td>
-                    <td className="p-3 border">{subject.assignments}</td>
-                    <td className="p-3 border">{subject.midterm}</td>
-                    <td className="p-3 border">{subject.final}</td>
-                    <td className="p-3 border">{subject.total}</td>
+                    <td className="p-2 md:p-3 border">{subject.name}</td>
+                    <td className="p-2 md:p-3 border">{subject.assignments}</td>
+                    <td className="p-2 md:p-3 border">{subject.midterm}</td>
+                    <td className="p-2 md:p-3 border">{subject.final}</td>
+                    <td className="p-2 md:p-3 border">{subject.total}</td>
                   </motion.tr>
                 ))}
               </tbody>
@@ -119,18 +119,20 @@ function AcademicPerformance() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="bg-white shadow-md rounded-lg p-6 mb-6"
+          className="bg-white shadow-md rounded-lg p-4 md:p-6 mb-6"
         >
-          <h2 className="text-xl font-semibold mb-4">Performance Trend</h2>
-          <div className="responsive-chart">
-            <LineChart width={600} height={300} data={performanceTrend}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="semester" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="gpa" stroke="#8884d8" activeDot={{ r: 8 }} />
-            </LineChart>
+          <h2 className="text-lg md:text-xl font-semibold mb-4">Performance Trend</h2>
+          <div className="responsive-chart w-full h-64 md:h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={performanceTrend}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="semester" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="gpa" stroke="#8884d8" activeDot={{ r: 8 }} />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         </motion.section>
 
@@ -138,10 +140,10 @@ function AcademicPerformance() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="bg-white shadow-md rounded-lg p-6"
+          className="bg-white shadow-md rounded-lg p-4 md:p-6"
         >
-          <h2 className="text-xl font-semibold mb-4">Overall Performance</h2>
-          <div className="text-lg">
+          <h2 className="text-lg md:text-xl font-semibold mb-4">Overall Performance</h2>
+          <div className="text-sm md:text-lg">
             <p><span className="font-medium">Total Marks:</span> 500</p>
             <p><span className="font-medium">Marks Obtained:</span> 450</p>
             <p><span className="font-medium">Percentage:</span> 90%</p>
