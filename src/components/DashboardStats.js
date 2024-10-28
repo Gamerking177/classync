@@ -110,7 +110,7 @@ const Dashboard = () => {
                     </li>
                     <li className="flex items-center space-x-4 hover:bg-purple-50 rounded-md px-2 transition-colors duration-200">
                         <span role="img" aria-label="link" className="text-purple-500">👥</span>
-                        <Link to="/user-profile" className="text-blue-500 hover:underline">Student Support</Link>
+                        <Link to="/student-support" className="text-blue-500 hover:underline">Student Support</Link>
                     </li>
                 </ul>
             </div>
