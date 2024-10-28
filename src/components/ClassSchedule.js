@@ -2,28 +2,67 @@ import React, { useState } from 'react';
 
 function ClassSchedule() {
   const [view, setView] = useState('weekly');
-  const [semester, setSemester] = useState('Fall 2023');
+  const [semester, setSemester] = useState('Semester 1');
   const [course, setCourse] = useState('All Courses');
 
   // Example course options
   const courses = ['All Courses', 'BCA', 'BTech', 'MCA', 'MBA'];
 
   const weeklySchedule = {
-    'Fall 2023': {
+    'Semester 1': {
       BCA: [
         { day: 'Monday', startTime: '9:00 AM', endTime: '10:30 AM', subject: 'Mathematics, Statistics, Physics', room: 'Room 101' },
-        { day: 'Wednesday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Computer Science, Data Analysis, Networks', room: 'Room 102' },
-        { day: 'Friday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'English, Literature, Communication Skills', room: 'Room 103' },
       ],
       BTech: [
-        { day: 'Tuesday', startTime: '10:00 AM', endTime: '11:30 AM', subject: 'Engineering Mechanics, Thermodynamics, Physics', room: 'Room 201' },
-        { day: 'Thursday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Data Structures, Algorithms, Operating Systems', room: 'Room 202' },
+        { day: 'Tuesday', startTime: '10:00 AM', endTime: '11:30 AM', subject: 'Engineering Basics, Mathematics', room: 'Room 201' },
       ],
       MCA: [
-        { day: 'Monday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Database Management Systems, Software Engineering, AI', room: 'Room 301' },
+        { day: 'Wednesday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Programming Fundamentals', room: 'Room 301' },
       ],
       MBA: [
-        { day: 'Wednesday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Business Management, Marketing, Economics', room: 'Room 401' },
+        { day: 'Thursday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Business Management', room: 'Room 401' },
+      ],
+    },
+    'Semester 2': {
+      BCA: [
+        { day: 'Monday', startTime: '9:00 AM', endTime: '10:30 AM', subject: 'Advanced Mathematics', room: 'Room 102' },
+      ],
+      BTech: [
+        { day: 'Tuesday', startTime: '10:00 AM', endTime: '11:30 AM', subject: 'Thermodynamics', room: 'Room 202' },
+      ],
+      MCA: [
+        { day: 'Wednesday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Data Structures', room: 'Room 302' },
+      ],
+      MBA: [
+        { day: 'Thursday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Financial Accounting', room: 'Room 402' },
+      ],
+    },
+    'Semester 3': {
+      BCA: [
+        { day: 'Monday', startTime: '9:00 AM', endTime: '10:30 AM', subject: 'Computer Networks', room: 'Room 103' },
+      ],
+      BTech: [
+        { day: 'Tuesday', startTime: '10:00 AM', endTime: '11:30 AM', subject: 'Fluid Mechanics', room: 'Room 203' },
+      ],
+      MCA: [
+        { day: 'Wednesday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Database Management', room: 'Room 303' },
+      ],
+      MBA: [
+        { day: 'Thursday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Marketing Strategies', room: 'Room 403' },
+      ],
+    },
+    'Semester 4': {
+      BCA: [
+        { day: 'Monday', startTime: '9:00 AM', endTime: '10:30 AM', subject: 'Operating Systems', room: 'Room 104' },
+      ],
+      BTech: [
+        { day: 'Tuesday', startTime: '10:00 AM', endTime: '11:30 AM', subject: 'Control Systems', room: 'Room 204' },
+      ],
+      MCA: [
+        { day: 'Wednesday', startTime: '11:00 AM', endTime: '12:30 PM', subject: 'Artificial Intelligence', room: 'Room 304' },
+      ],
+      MBA: [
+        { day: 'Thursday', startTime: '1:00 PM', endTime: '2:30 PM', subject: 'Human Resource Management', room: 'Room 404' },
       ],
     },
   };
@@ -31,19 +70,24 @@ function ClassSchedule() {
   const monthlySchedule = [
     { week: 'Week 1', subjects: 'Mathematics, Statistics, Physics' },
     { week: 'Week 2', subjects: 'Engineering Mechanics, Thermodynamics, Physics' },
-    { week: 'Week 3', subjects: 'Database Management Systems, Software Engineering, AI' },
-    { week: 'Week 4', subjects: 'Business Management, Marketing, Economics' },
+    // Other weeks...
   ];
 
-  const filteredWeeklySchedule = Object.entries(weeklySchedule[semester]).flatMap(([courseName, sessions]) =>
-    course === 'All Courses' || course === courseName ? sessions : []
+  const examSchedule = [
+    { date: '2023-11-01', subject: 'Mathematics', room: 'Room 101', startTime: '10:00 AM', endTime: '12:00 PM' },
+    { date: '2023-11-05', subject: 'Physics', room: 'Room 102', startTime: '2:00 PM', endTime: '4:00 PM' },
+    // Other exams...
+  ];
+
+  const filteredWeeklySchedule = Object.entries(weeklySchedule[semester] || {}).flatMap(
+    ([courseName, sessions]) => (course === 'All Courses' || course === courseName ? sessions : [])
   );
 
   return (
     <div className="p-4 sm:p-6 md:p-8 lg:p-10">
       <h2 className="text-xl sm:text-2xl font-semibold mb-4">Class Schedule - {semester}</h2>
 
-      {/* Semester Selector */}
+      {/* Semester and Course Selectors */}
       <div className="mb-4">
         <label htmlFor="semester" className="mr-2 font-medium">Select Semester:</label>
         <select
@@ -52,13 +96,13 @@ function ClassSchedule() {
           onChange={(e) => setSemester(e.target.value)}
           className="px-3 py-2 border border-gray-300 rounded-md w-full sm:w-auto"
         >
-          <option>Fall 2023</option>
-          <option>Spring 2024</option>
-          <option>Fall 2024</option>
+          <option>Semester 1</option>
+          <option>Semester 2</option>
+          <option>Semester 3</option>
+          <option>Semester 4</option>
         </select>
       </div>
 
-      {/* Course Selector */}
       <div className="mb-4">
         <label htmlFor="course" className="mr-2 font-medium">Select Course:</label>
         <select
@@ -73,7 +117,7 @@ function ClassSchedule() {
         </select>
       </div>
 
-      {/* Toggle Buttons for Weekly and Monthly View */}
+      {/* Toggle Buttons for Weekly, Monthly, and Exam Schedule */}
       <div className="flex flex-wrap space-x-4 mb-6">
         <button
           onClick={() => setView('weekly')}
@@ -86,6 +130,12 @@ function ClassSchedule() {
           className={`px-4 py-2 rounded ${view === 'monthly' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
         >
           Monthly
+        </button>
+        <button
+          onClick={() => setView('exams')}
+          className={`px-4 py-2 rounded ${view === 'exams' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
+        >
+          Exam Schedule
         </button>
       </div>
 
@@ -117,7 +167,7 @@ function ClassSchedule() {
               </tbody>
             </table>
           </div>
-        ) : (
+        ) : view === 'monthly' ? (
           <div>
             <h3 className="text-lg sm:text-xl font-semibold mb-3">Monthly Schedule</h3>
             <table className="min-w-full border border-gray-300 text-sm sm:text-base">
@@ -132,6 +182,32 @@ function ClassSchedule() {
                   <tr key={index} className="border-b">
                     <td className="border px-2 sm:px-4 py-2">{week.week}</td>
                     <td className="border px-2 sm:px-4 py-2">{week.subjects}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold mb-3">Exam Schedule</h3>
+            <table className="min-w-full border border-gray-300 text-sm sm:text-base">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="border px-2 sm:px-4 py-2">Date</th>
+                  <th className="border px-2 sm:px-4 py-2">Subject</th>
+                  <th className="border px-2 sm:px-4 py-2">Room No.</th>
+                  <th className="border px-2 sm:px-4 py-2">Start Time</th>
+                  <th className="border px-2 sm:px-4 py-2">End Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {examSchedule.map((exam, index) => (
+                  <tr key={index} className="border-b">
+                    <td className="border px-2 sm:px-4 py-2">{exam.date}</td>
+                    <td className="border px-2 sm:px-4 py-2">{exam.subject}</td>
+                    <td className="border px-2 sm:px-4 py-2">{exam.room}</td>
+                    <td className="border px-2 sm:px-4 py-2">{exam.startTime}</td>
+                    <td className="border px-2 sm:px-4 py-2">{exam.endTime}</td>
                   </tr>
                 ))}
               </tbody>
