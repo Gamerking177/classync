@@ -45,10 +45,10 @@ function AcademicPerformance() {
         transition={{ duration: 0.5 }}
         className="text-center py-4 md:py-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg mb-6 shadow-lg"
       >
-        <h1 className="text-2xl md:text-3xl font-bold">Marks & Academic Performance</h1>
+        <h1 className="text-xl md:text-2xl font-bold">Marks & Academic Performance</h1>
       </motion.header>
 
-      <div className="max-w-4xl lg:max-w-6xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <motion.section
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -56,7 +56,7 @@ function AcademicPerformance() {
           className="bg-white shadow-md rounded-lg p-4 md:p-6 mb-6"
         >
           <h2 className="text-lg md:text-xl font-semibold mb-4">Student Information</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm md:text-base">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm md:text-base">
             <p><span className="font-medium">Name:</span> Rahul</p>
             <p><span className="font-medium">Student ID:</span> 123456</p>
             <p><span className="font-medium">Class:</span> BCA 3rd Year</p>
@@ -77,7 +77,7 @@ function AcademicPerformance() {
               id="semester"
               value={selectedSemester}
               onChange={(e) => setSelectedSemester(e.target.value)}
-              className="p-2 border rounded"
+              className="p-2 border rounded w-full md:w-auto"
             >
               {semesters.map((sem) => (
                 <option key={sem} value={sem}>{sem}</option>
@@ -85,7 +85,7 @@ function AcademicPerformance() {
             </select>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse text-sm md:text-base">
+            <table className="min-w-full text-left border-collapse text-sm md:text-base">
               <thead>
                 <tr className="bg-blue-200">
                   <th className="p-2 md:p-3 border">Subject</th>
@@ -122,7 +122,7 @@ function AcademicPerformance() {
           className="bg-white shadow-md rounded-lg p-4 md:p-6 mb-6"
         >
           <h2 className="text-lg md:text-xl font-semibold mb-4">Performance Trend</h2>
-          <div className="responsive-chart w-full h-64 md:h-80">
+          <div className="w-full h-64 md:h-80">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={performanceTrend}>
                 <CartesianGrid strokeDasharray="3 3" />
