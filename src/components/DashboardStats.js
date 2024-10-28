@@ -30,7 +30,7 @@ const Dashboard = () => {
     return (
         <div className="p-6 min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100 relative">
 
-            <h1 className="text-3xl font-semibold mb-6 text-indigo-700">Dashboard Overview</h1>
+            <h1 className="text-3xl font-semibold mb-6 text-indigo-700 text-center sm:text-left">Dashboard Overview</h1>
 
             {/* Announcements and Activities Section */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
@@ -52,7 +52,7 @@ const Dashboard = () => {
                     <h2 className="text-2xl font-semibold text-blue-600 mb-4">Recent Activities</h2>
                     <ul className="space-y-4 text-gray-700">
                         {recentActivities.map((activity) => (
-                            <li key={activity.id} className="flex justify-between border-b pb-2 hover:bg-blue-50 rounded-md px-2 transition-colors duration-200">
+                            <li key={activity.id} className="flex flex-col md:flex-row justify-between border-b pb-2 hover:bg-blue-50 rounded-md px-2 transition-colors duration-200">
                                 <span>{activity.activity}</span>
                                 <span className="text-sm text-gray-500">{activity.time}</span>
                             </li>
@@ -66,7 +66,7 @@ const Dashboard = () => {
                 <h2 className="text-2xl font-semibold text-green-600 mb-4">Upcoming Exams</h2>
                 <ul className="space-y-4 text-gray-700">
                     {upcomingExams.map((exam) => (
-                        <li key={exam.id} className="flex justify-between border-b pb-2 hover:bg-green-50 rounded-md px-2 transition-colors duration-200">
+                        <li key={exam.id} className="flex flex-col md:flex-row justify-between border-b pb-2 hover:bg-green-50 rounded-md px-2 transition-colors duration-200">
                             <div>
                                 <h3 className="font-semibold">{exam.subject}</h3>
                                 <p className="text-sm text-gray-500">{exam.date}</p>

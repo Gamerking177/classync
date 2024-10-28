@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Doughnut } from 'react-chartjs-2';
@@ -14,12 +14,11 @@ const AttendanceManagement = () => {
     { id: 2, date: '2024-10-02', status: 'Absent' },
     { id: 3, date: '2024-10-03', status: 'Leave' },
     { id: 4, date: '2024-10-04', status: 'Present' },
-    // Add more records as needed
   ];
 
   // Filter records for the current month
   const currentMonth = new Date().getMonth() + 1; // months are zero-indexed
-  const currentMonthRecords = attendanceRecords.filter(record => 
+  const currentMonthRecords = attendanceRecords.filter(record =>
     new Date(record.date).getMonth() + 1 === currentMonth
   );
 
@@ -47,18 +46,18 @@ const AttendanceManagement = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-100 to-purple-100 p-4 md:p-6">
       <motion.header
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-center py-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg mb-6 shadow-lg"
+        className="text-center py-4 md:py-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg mb-4 md:mb-6 shadow-lg"
       >
-        <h1 className="text-3xl font-bold">Attendance Management</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">Attendance Management</h1>
       </motion.header>
 
       {/* Navigation Links */}
-      <nav className="flex justify-center gap-4 mb-6">
+      <nav className="flex flex-col md:flex-row justify-center gap-2 md:gap-4 mb-4 md:mb-6">
         {['/attendance-record', '/attendance-calendar', '/attendance-overview'].map((link, index) => (
           <MotionLink
             to={link}
@@ -66,7 +65,7 @@ const AttendanceManagement = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200"
+            className="bg-blue-600 text-white px-3 py-2 rounded-lg hover:bg-blue-700 transition duration-200 text-center"
           >
             {link.split('/').pop().replace('-', ' ').replace(/^\w/, c => c.toUpperCase())}
           </MotionLink>
@@ -74,19 +73,27 @@ const AttendanceManagement = () => {
       </nav>
 
       {/* Attendance Summary Pie Chart and Percentage Summary */}
-      <div className="flex justify-center items-center mt-8 space-x-8">
+      <div className="flex flex-col md:flex-row justify-center items-center mt-6 md:mt-8 space-y-6 md:space-y-0 md:space-x-8">
         {/* Pie Chart */}
-        <div className="w-1/2 md:w-1/3 lg:w-1/4">
-          <h2 className="text-xl font-semibold text-center mb-4">Current Month Attendance Summary</h2>
+        <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
+          <h2 className="text-lg md:text-xl font-semibold text-center mb-4">Current Month Attendance Summary</h2>
           <Doughnut data={attendanceData} />
         </div>
 
         {/* Percentage Summary */}
-        <div className="text-lg font-medium">
-       <u> <p><span className="font-semibold text-purple-600">Total 100%:</span>  </p></u>
-          <p><span className="font-semibold text-green-600">Present:</span> {presentPercentage}%</p>
-          <p><span className="font-semibold text-red-600">Absent:</span> {absentPercentage}%</p>
-          <p><span className="font-semibold text-yellow-600">Leave:</span> {leavePercentage}%</p>
+        <div className="text-center md:text-left text-lg font-medium space-y-2 md:space-y-3">
+          <p className="underline">
+            <span className="font-semibold text-purple-600">Total 100%:</span>
+          </p>
+          <p>
+            <span className="font-semibold text-green-600">Present:</span> {presentPercentage}%
+          </p>
+          <p>
+            <span className="font-semibold text-red-600">Absent:</span> {absentPercentage}%
+          </p>
+          <p>
+            <span className="font-semibold text-yellow-600">Leave:</span> {leavePercentage}%
+          </p>
         </div>
       </div>
     </div>
