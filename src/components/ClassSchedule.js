@@ -40,8 +40,8 @@ function ClassSchedule() {
   );
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">Class Schedule - {semester}</h2>
+    <div className="p-4 sm:p-6 md:p-8 lg:p-10">
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4">Class Schedule - {semester}</h2>
 
       {/* Semester Selector */}
       <div className="mb-4">
@@ -50,7 +50,7 @@ function ClassSchedule() {
           id="semester"
           value={semester}
           onChange={(e) => setSemester(e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-md"
+          className="px-3 py-2 border border-gray-300 rounded-md w-full sm:w-auto"
         >
           <option>Fall 2023</option>
           <option>Spring 2024</option>
@@ -65,7 +65,7 @@ function ClassSchedule() {
           id="course"
           value={course}
           onChange={(e) => setCourse(e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-md"
+          className="px-3 py-2 border border-gray-300 rounded-md w-full sm:w-auto"
         >
           {courses.map((courseOption, index) => (
             <option key={index} value={courseOption}>{courseOption}</option>
@@ -74,7 +74,7 @@ function ClassSchedule() {
       </div>
 
       {/* Toggle Buttons for Weekly and Monthly View */}
-      <div className="flex space-x-4 mb-6">
+      <div className="flex flex-wrap space-x-4 mb-6">
         <button
           onClick={() => setView('weekly')}
           className={`px-4 py-2 rounded ${view === 'weekly' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}
@@ -90,28 +90,28 @@ function ClassSchedule() {
       </div>
 
       {/* Timetable Display */}
-      <div className="bg-white p-6 shadow rounded-lg">
+      <div className="bg-white p-4 sm:p-6 shadow rounded-lg overflow-x-auto">
         {view === 'weekly' ? (
           <div>
-            <h3 className="text-xl font-semibold mb-3">Weekly Schedule</h3>
-            <table className="min-w-full border border-gray-300">
+            <h3 className="text-lg sm:text-xl font-semibold mb-3">Weekly Schedule</h3>
+            <table className="min-w-full border border-gray-300 text-sm sm:text-base">
               <thead>
                 <tr className="bg-gray-200">
-                  <th className="border px-4 py-2">Day</th>
-                  <th className="border px-4 py-2">Class Start Time</th>
-                  <th className="border px-4 py-2">Class End Time</th>
-                  <th className="border px-4 py-2">Subject</th>
-                  <th className="border px-4 py-2">Room No.</th>
+                  <th className="border px-2 sm:px-4 py-2">Day</th>
+                  <th className="border px-2 sm:px-4 py-2">Class Start Time</th>
+                  <th className="border px-2 sm:px-4 py-2">Class End Time</th>
+                  <th className="border px-2 sm:px-4 py-2">Subject</th>
+                  <th className="border px-2 sm:px-4 py-2">Room No.</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredWeeklySchedule.map((session, index) => (
                   <tr key={index} className="border-b">
-                    <td className="border px-4 py-2">{session.day}</td>
-                    <td className="border px-4 py-2">{session.startTime}</td>
-                    <td className="border px-4 py-2">{session.endTime}</td>
-                    <td className="border px-4 py-2">{session.subject}</td>
-                    <td className="border px-4 py-2">{session.room}</td>
+                    <td className="border px-2 sm:px-4 py-2">{session.day}</td>
+                    <td className="border px-2 sm:px-4 py-2">{session.startTime}</td>
+                    <td className="border px-2 sm:px-4 py-2">{session.endTime}</td>
+                    <td className="border px-2 sm:px-4 py-2">{session.subject}</td>
+                    <td className="border px-2 sm:px-4 py-2">{session.room}</td>
                   </tr>
                 ))}
               </tbody>
@@ -119,19 +119,19 @@ function ClassSchedule() {
           </div>
         ) : (
           <div>
-            <h3 className="text-xl font-semibold mb-3">Monthly Schedule</h3>
-            <table className="min-w-full border border-gray-300">
+            <h3 className="text-lg sm:text-xl font-semibold mb-3">Monthly Schedule</h3>
+            <table className="min-w-full border border-gray-300 text-sm sm:text-base">
               <thead>
                 <tr className="bg-gray-200">
-                  <th className="border px-4 py-2">Week</th>
-                  <th className="border px-4 py-2">Subjects</th>
+                  <th className="border px-2 sm:px-4 py-2">Week</th>
+                  <th className="border px-2 sm:px-4 py-2">Subjects</th>
                 </tr>
               </thead>
               <tbody>
                 {monthlySchedule.map((week, index) => (
                   <tr key={index} className="border-b">
-                    <td className="border px-4 py-2">{week.week}</td>
-                    <td className="border px-4 py-2">{week.subjects}</td>
+                    <td className="border px-2 sm:px-4 py-2">{week.week}</td>
+                    <td className="border px-2 sm:px-4 py-2">{week.subjects}</td>
                   </tr>
                 ))}
               </tbody>
