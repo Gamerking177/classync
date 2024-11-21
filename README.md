@@ -1,4 +1,4 @@
-Build this project at a hackathon conducted at BIT(patna) ,event name:-technika  
+Built this project at a hackathon with my 2 other teammates conducted at BIT(patna) ,event name:-technika  
 <div style="text-align: center;">
   <img src="./src/assets/logo/logo.png" width="100px" style="border-radius: 50%;" alt="classSync Logo">
 </div>
