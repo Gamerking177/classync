@@ -3,7 +3,6 @@ Built this project at a hackathon with my 2 other teammates(whom you can see in 
   <img src="./src/assets/logo/logo.png" width="100px" style="border-radius: 50%;" alt="classSync Logo">
 </div>
 
-
 # ClassSync 📅✨
 
 ClassSync is designed to bring ease and organization to education by simplifying schedules, tracking assignments, and managing tasks, helping students and teachers stay on top of everything in a seamless and stress-free way.
