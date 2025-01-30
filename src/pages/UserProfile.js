@@ -5,7 +5,7 @@ const UserProfile = () => {
     const [editable, setEditable] = useState(false);
     const [profile, setProfile] = useState({
         studentID: "BCA2024XYZ",
-        name: "John Doe",
+        name: "Rahul kumar",
         email: "johndoe@example.com",
         phone: "123-456-7890",
         address: "123, Main Street, City",
