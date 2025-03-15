@@ -1,28 +1,22 @@
 import { useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function NewsletterModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const auth = getAuth();
+    const storedUser = localStorage.getItem("user");
 
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // Delay opening the modal by 3 seconds after a successful login
-        const timer = setTimeout(() => {
-          setIsOpen(true);
-        }, 3000);
+    if (storedUser) {
+      // Delay opening the modal by 3 seconds after detecting login
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 3000);
 
-        // Clear timeout if the user logs out before 3 seconds pass
-        return () => clearTimeout(timer);
-      } else {
-        setIsOpen(false);
-      }
-    });
-
-    // Cleanup the listener on component unmount
-    return () => unsubscribe();
+      // Cleanup timeout
+      return () => clearTimeout(timer);
+    } else {
+      setIsOpen(false);
+    }
   }, []);
 
   const closeModal = () => {

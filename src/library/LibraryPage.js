@@ -37,6 +37,7 @@ const LibraryPage = () => {
         <div className="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
           <img src="book-image-url" alt="Book Title" className="w-32 h-48 object-cover mb-4" />
           <h2 className="text-lg font-semibold text-center">Book Title</h2>
+          <h2 className="text-lg font-semibold text-center">Auther name Title</h2>
           <button className="mt-4 px-4 py-2 bg-pink-400 text-white rounded hover:bg-pink-500">
             Download
           </button>
