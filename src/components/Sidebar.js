@@ -12,28 +12,23 @@ import {
   faBars,
   faTimes
 } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '../context/authContext/authContext'; // 🔹 Importing AuthContext to access authentication state
 import Logo from '../assets/logo/logo.png';
-import DefaultProfile from '../assets/default profile.png';
+import Avatar from 'react-avatar';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { currentUser } = useAuth(); // 🔹 Accessing the logged-in user's data
 
-  // Toggle sidebar open/close
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
-  };
-
-  const profileData = {
-    name: "Game Play",
-    email: "gameplayap1@gmail.com",
-    profilePic: DefaultProfile
   };
 
   return (
     <div className="h-screen flex overflow-hidden">
       {/* Sidebar */}
       <div className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg p-4 z-10 transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
-        {/* Logo for sidebar */}
+        {/* Logo */}
         <div className="flex items-center mb-8">
           <img src={Logo} alt="Logo" className="rounded-full w-8 h-8 ml-1" />
           <h3 className="ml-2 text-xl font-semibold text-gray-800">ClassSync</h3>
@@ -124,16 +119,17 @@ const Sidebar = () => {
 
         {/* Profile Footer Section */}
         <div className="absolute bottom-4 left-4 flex items-center">
-          <div className="w-12 h-12 p-1 rounded-full bg-gray-200 flex items-center justify-center">
-            <img
-              src={profileData.profilePic}
-              alt="Profile"
-              className="rounded-full object-cover w-full h-full"
+          {/* 🔹 Avatar for user profile picture */}
+          <div className="w-12 h-12 p-1 flex items-center justify-center">
+            <Avatar
+              name={currentUser?.name || "Guest"} // 🔹 Display user's name if available, otherwise "Guest"
+              size="40"
+              round={true}
             />
           </div>
           <div className="ml-2 max-w-[200px]">
-            <p className="font-bold">{profileData.name}</p>
-            <p className="text-gray-600 text-sm">{profileData.email}</p>
+            <p className="font-bold">{currentUser?.name || "Guest"}</p> {/* 🔹 Display user's name or "Guest" */}
+            <p className="text-gray-600 text-sm">{currentUser?.email || "Not logged in"}</p> {/* 🔹 Display user's email or "Not logged in" */}
           </div>
         </div>
       </div>
