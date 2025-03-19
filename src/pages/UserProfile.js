@@ -50,7 +50,7 @@ const UserProfile = () => {
 
         try {
             const API_URL = process.env.REACT_APP_API_URL;
-            const response = await fetch(`${API_URL}/getUserSummery`, {
+            const response = await fetch(`${API_URL}/users/getUserSummery`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ const UserProfile = () => {
 
         try {
             const API_URL = process.env.REACT_APP_API_URL;
-            const response = await fetch(`${API_URL}/getUserDetails`, {
+            const response = await fetch(`${API_URL}/users/getUserDetails`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

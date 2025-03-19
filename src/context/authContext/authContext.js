@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             const API_URL = process.env.REACT_APP_API_URL; // 🔹 API ka base URL environment variables se fetch kiya ja raha hai
-            const response = await fetch(`${API_URL}/login`, {
+            const response = await fetch(`${API_URL}/users/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: 'include',
