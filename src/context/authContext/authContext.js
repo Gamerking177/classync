@@ -14,26 +14,23 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             const API_URL = process.env.REACT_APP_API_URL; // 🔹 API ka base URL environment variables se fetch kiya ja raha hai
-            const response = await fetch(`${API_URL}/login`, {
+            const response = await fetch(`${API_URL}/users/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: 'include',
                 body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
             if (!response.ok) throw new Error(data.message || "Login failed");
-            console.log(data)
 
             // 🔹 User ka authentication token local storage me save karna
             localStorage.setItem("token", data.token);
-
-            console.log("User Data:", data.user); // 🔹 Debugging ke liye user data console me print kiya
 
             // 🔹 User state update karna
             setCurrentUser(data.user);
             setUserLoggedIn(true);
         } catch (error) {
-            console.error("Login error:", error.message);
             throw error; // 🔹 Error ko handle karne ke liye throw kiya
         }
     };

@@ -1,9 +1,8 @@
 // src/components/Dashboard.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-
     const announcements = [
         { id: 1, title: "Library Week", content: "Library week starts from Nov 1st to Nov 7th. All students are welcome!" },
         { id: 2, title: "Winter Vacation", content: "College will remain closed from Dec 25th to Jan 5th for winter break." },
