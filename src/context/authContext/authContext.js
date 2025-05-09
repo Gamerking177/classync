@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
     // 🔹 Login function jo API call karega aur user authentication handle karega
     const login = async (email, password) => {
         try {
-            const API_URL = process.env.REACT_APP_API_URL; // 🔹 API ka base URL environment variables se fetch kiya ja raha hai
+            const API_URL = process.env.REACT_APP_API_URL; // 🔹 API ka base URL environment variables se fetch kiya ja raha haiclg
             const response = await fetch(`${API_URL}/users/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -31,6 +31,7 @@ export const AuthProvider = ({ children }) => {
             setCurrentUser(data.user);
             setUserLoggedIn(true);
         } catch (error) {
+            console.log("error", error)
             throw error; // 🔹 Error ko handle karne ke liye throw kiya
         }
     };

@@ -56,6 +56,8 @@ const Login = () => {
 
     return (
         <main className="w-full h-screen flex items-center justify-center">
+
+            <p className="text-xl text-red-700 ">⚠️ Site is in under maintenance</p>
             {/* 🔹 Animated Login Form */}
             <motion.div 
                 initial={{ opacity: 0, y: -50 }} 
