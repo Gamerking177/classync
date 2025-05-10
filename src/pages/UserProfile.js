@@ -68,7 +68,6 @@ const UserProfile = () => {
             }
         } catch (err) {
             setError('Something went wrong!');
-            console.error(err);
         } finally {
             setLoading(false);
         }
@@ -98,17 +97,13 @@ const UserProfile = () => {
 
             const data = await response.json();
 
-            console.log(data)
-
             if (response.ok) {
                 setUserDetails(data.user);
-                console.log(data.user)
             } else {
                 setError(data.message);
             }
         } catch (err) {
             setError('Something went wrong!');
-            console.error(err);
         } finally {
             setLoading(false);
         }
@@ -156,7 +151,7 @@ const UserProfile = () => {
                                 <input
                                     type={key === "email" ? "email" : "text"}
                                     name={key}
-                                    value={value}
+                                    value={value || "Unable to Fetch"}
                                     disabled={!editable}
                                     onChange={() => { }}
                                     className="w-full p-3 border rounded-lg shadow-sm mt-1 focus:ring-2 focus:ring-blue-300 transition-all duration-300"
